@@ -1,0 +1,62 @@
+.navbar {
+  font-size: 1.25em;
+  padding: 1% 5% 1% 5% !important;
+  background-color: #eeeeee; 
+  font-family: Montserrat;
+  box-shadow: 5px 4px 5px #888888;
+}
+
+.dot {
+  color: #00adb5;
+}
+
+.nav-link {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.nav-item:hover , .nav-item:active{
+  font-weight: bold;
+  color:black
+}
+
+a.disabled {
+  pointer-events: none; 
+}
+
+.nav-item {
+  color: black;
+}
+.logo- {
+  max-width: 70%;
+}
+.logo-margin {
+  margin-right: 8%;
+}
+
+.btn {
+  border-radius: 10px !important;
+  border: 4px solid #00adb5 !important;
+  padding: 12px 40px 12px 40px !important;
+  max-height: 2.5rem;
+  font-size: 1.05rem !important;
+}
+
+.ml{
+  margin-left: 40px;
+}
+
+.button1 {
+  background-color: #00adb5 !important ;
+  font-weight: bolder !important;
+  color: white !important;
+}
+.button2 {
+  background-color: transparent;
+  font-weight: bold !important;
+  color: black;
+}
+
+.button:focus , .button:hover{ 
+  outline: none !important;
+}

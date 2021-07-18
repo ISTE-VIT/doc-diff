@@ -1,0 +1,31 @@
+.navbar {
+    font-size: 1.25em;
+    padding: 1% 5% 1% 5% !important;
+    background-color: #eeeeee; 
+    font-family: Montserrat;
+    box-shadow: 5px 4px 5px #888888;
+  }
+  
+  a.disabled {
+    pointer-events: none; 
+}
+
+  .dot {
+    color: #00adb5 !important;
+  } 
+  
+  .nav-item {
+    color: black;
+  }
+
+  .nav-item:hover{
+    font-weight: bold;
+  }
+  .logo- {
+    max-width: 70%;
+  } 
+
+  .navbar-collapse{ 
+      margin-left: 11%;
+  }
+

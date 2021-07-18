@@ -1,0 +1,39 @@
+.section3{
+    padding: 5% 5% 0 5% !important;  
+    font-family: Montserrat !important;
+}
+
+.sec3txt{
+    padding:5% 5% !important;
+    font-size: 24px;
+}
+
+.img3{
+    margin-top: 8%;
+}
+
+.footer{
+    display: flex;
+    align-items: flex-end;
+    margin-top: 15%;
+    justify-content: flex-end !important;
+}
+
+.wave {   
+    width: 100% ;
+    z-index: -1;
+    position: absolute;
+}
+
+.icons{ 
+    z-index:100;
+    display: flex;
+    align-items: flex-end;
+    padding-right: 30px;  
+    padding-bottom: 30px;
+}
+
+.icon{
+    padding:0px 25px 0px 25px;
+    z-index:100;
+}

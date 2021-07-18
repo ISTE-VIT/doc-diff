@@ -1,0 +1,30 @@
+.vert {
+    border: 2px solid #00adb5;
+    height: 30rem;
+    align-self: center;
+  } 
+
+  .signupbody >div >h2{
+    font-size: 40px !important;
+    margin-bottom: 10%;
+    margin-top: -5% !important;
+  }
+
+  .google{
+    border-radius: 10px !important;
+    border: 3px solid #00adb5 !important; 
+    margin-top: 5%;
+    font-size: 1.05rem !important; 
+    background-color: #fff !important;
+    color: #00adb5 !important;  
+    width: 75%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .signupbody{
+  background-color: white;
+  padding: 12% 5% 5% 10% !important;  
+  font-family: Montserrat !important;
+  margin-right: 0px !important;
+  }

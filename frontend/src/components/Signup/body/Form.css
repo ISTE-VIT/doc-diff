@@ -1,0 +1,28 @@
+.input, .input:hover , .input:focus{
+    border-left:transparent !important;
+    border-top:transparent !important;
+    border-right:transparent !important; 
+    border-radius: 0px !important;
+    margin-top: 10%; 
+}
+ 
+.signup > Form >Form :focus {
+    outline: 0px !important;
+}
+
+.signup{
+    padding-right: 25%;
+}
+.signupBtn{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center;
+    margin-top: 20%; 
+    border-radius: 10px !important;
+    border: 4px solid #00adb5 !important;
+    padding: 20px 60px 20px 60px !important; 
+    font-size: 1.25rem !important;
+    background-color: #00adb5 !important ;
+    font-weight: bolder !important;
+    color: white !important;
+}
