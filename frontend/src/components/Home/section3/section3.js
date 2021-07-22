@@ -27,22 +27,22 @@ const section3 = () => {
         <img src={wave} className="wave" alt="timemator" />
         <div className="icons" >
           <a className="icon" href="/">
-            <img src={mail} alt="mail" />
+            <img src={mail} />
           </a>
           <a className="icon" href="/">
-            <img src={facebook} alt="facebook" />
+            <img src={facebook} />
           </a>
           <a className="icon" href="/">
-            <img src={twitter} alt="twitter" />
+            <img src={twitter} />
           </a>
           <a className="icon" href="/">
-            <img src={instagram} alt="instagram" />
+            <img src={instagram} />
           </a>
           <a className="icon" href="/">
-            <img src={youtube} alt="youtube" />
+            <img src={youtube} />
           </a>
           <a className="icon" href="/">
-            <img src={linkedin} alt="linkedin" />
+            <img src={linkedin} />
           </a>
         </div>
         </div>

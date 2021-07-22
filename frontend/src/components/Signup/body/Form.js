@@ -28,7 +28,7 @@ const SignupForm = () => {
           body
         }
     
-        await fetch("https://doc-diff.herokuapp.com//users/signup", requestOptions).then((response) => {
+        await fetch("http://localhost:5000/users/signup", requestOptions).then((response) => {
           const data = response.json();
           if(response.status===200)
           {

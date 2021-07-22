@@ -14,7 +14,7 @@ const Google = ({text}) => {
       body
     }
 
-    await fetch("https://doc-diff.herokuapp.com//users/google/signup", requestOptions).then((response) => {
+    await fetch("http://localhost:5000/users/google/signup", requestOptions).then((response) => {
       const data = response.json();
       if(response.status===200)
           {

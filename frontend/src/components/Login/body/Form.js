@@ -26,7 +26,7 @@ const LoginForm = () => {
           body
         }
     
-        await fetch("https://doc-diff.herokuapp.com//users/signin", requestOptions).then((response) => {
+        await fetch("http://localhost:5000/users/signin", requestOptions).then((response) => {
           const data = response.json();
           if(response.status===200)
           {
@@ -40,7 +40,6 @@ const LoginForm = () => {
             console.log(error.message);
           });
       }
-      
     return (
         <div className="signup">
           <Form onSubmit={handleSubmit}>
