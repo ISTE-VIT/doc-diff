@@ -28,12 +28,12 @@ const SignupForm = () => {
           body
         }
     
-        await fetch("https://doc-diff.herokuapp.com/", requestOptions).then((response) => {
+        await fetch("https://doc-diff.herokuapp.com/signup", requestOptions).then((response) => {
           const data = response.json();
           if(response.status===200)
           {
             cookie.save("key", email, { path: "/" });
-            window.location.href = "http://localhost:3000/projects"
+            window.location.href = "https://flamboyant-meitner-14e281.netlify.app/projects"
           }
           return data;
         })

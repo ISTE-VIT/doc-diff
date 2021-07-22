@@ -14,12 +14,12 @@ const Google = ({text}) => {
       body
     }
 
-    await fetch("http://localhost:5000/users/google/signup", requestOptions).then((response) => {
+    await fetch("https://doc-diff.herokuapp.com/google", requestOptions).then((response) => {
       const data = response.json();
       if(response.status===200)
           {
             cookie.save("key", googleData.profileObj.email, { path: "/" });
-            window.location.href = "http://localhost:3000/projects"
+            window.location.href = "https://flamboyant-meitner-14e281.netlify.app/projects"
           }
       return data;
     }).then((data) => {
