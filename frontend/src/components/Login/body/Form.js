@@ -26,7 +26,7 @@ const LoginForm = () => {
           body
         }
     
-        await fetch("https://doc-diff.herokuapp.com/login", requestOptions).then((response) => {
+        await fetch("https://doc-diff.herokuapp.com/users/login", requestOptions).then((response) => {
           const data = response.json();
           if(response.status===200)
           {
