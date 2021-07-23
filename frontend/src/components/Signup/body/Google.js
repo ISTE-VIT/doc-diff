@@ -19,7 +19,7 @@ const Google = ({text}) => {
       if(response.status===200)
           {
             cookie.save("key", googleData.profileObj.email, { path: "/" });
-            window.location.href = "https://flamboyant-meitner-14e281.netlify.app/projects"
+            window.location.href = "https://affectionate-noether-b42e7d.netlify.app/projects"
           }
       return data;
     }).then((data) => {

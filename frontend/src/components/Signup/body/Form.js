@@ -33,7 +33,7 @@ const SignupForm = () => {
           if(response.status===200)
           {
             cookie.save("key", email, { path: "/" });
-            window.location.href = "https://flamboyant-meitner-14e281.netlify.app/projects"
+            window.location.href = "https://affectionate-noether-b42e7d.netlify.app/projects"
           }
           return data;
         })
