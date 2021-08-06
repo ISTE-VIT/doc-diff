@@ -19,9 +19,9 @@ const Navbar3 = () => {
           <div className="navbar-nav">
             <a className="nav-item nav-link active" href="/" >Home</a>
             <a className="nav-link dot px-5 disabled" href="/#" >      ●      </a>
-            <a className="nav-item nav-link" >Editor</a>
+            <a className="nav-item nav-link" href="/editor">Editor</a>
             <a className="nav-link dot px-5 disabled" href="/#">      ●      </a>
-            <a className="nav-item nav-link" >Projects</a>  
+            <a className="nav-item nav-link" href="/projects">Projects</a>  
           </div>
         
           <a href="/" >
