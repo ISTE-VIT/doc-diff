@@ -1,6 +1,12 @@
+import Navbar3 from "../components/Projects/Navbar/Navbar3"
+import Section4 from '../components/Projects/Section4/section4'; 
+
 const Projects = () => {
 return(
-    <h2>Projects Page</h2>
+    <>
+    <Navbar3/>
+    <Section4/>
+    </>
 )
 };
 
