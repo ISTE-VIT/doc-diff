@@ -1,0 +1,17 @@
+label {
+    background-color: #00adb5;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif; 
+    cursor: pointer; 
+    width:100%;
+    margin: 0px !important;
+}
+
+.upload_btn {
+    background-color: #1E1E1E;
+    color: white; 
+    font-family: sans-serif; 
+    cursor: pointer; 
+    width:100%; 
+}

@@ -1,5 +1,6 @@
 import "./section1.css";
 import img1 from "../../../images/img1.svg"; 
+import {Link} from "react-router-dom"
 
 const Section1 = () => {
   return (
@@ -10,9 +11,10 @@ const Section1 = () => {
         <h3 className="txt">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </h3>
-        <button className="nav-link btn3" href="#otherresources">
+        <Link to="/editor"><button className="nav-link btn3" >
           Go to the Editor
         </button>
+        </Link>
       </div>
       <div className="col-lg-6">
         <img src={img1} className="container img1" alt="timemator" />

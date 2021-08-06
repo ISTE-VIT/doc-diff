@@ -26,18 +26,21 @@ const LoginForm = () => {
           body
         }
     
-        await fetch("https://doc-diff.herokuapp.com/users/login", requestOptions).then((response) => {
+        await fetch("http://localhost:5000/users/signin", requestOptions).then((response) => {
           const data = response.json();
-          if(response.status===200)
+          if(response.status===201)
           {
             cookie.save("key", email, { path: "/" });
-            window.location.href = "https://affectionate-noether-b42e7d.netlify.app/projects"
+            window.location.href = "http://localhost:3000/projects"
           }
           return data;
         })
-          .then((data) => { console.log(data) })
+          .then((data) => { console.log(data) 
+          const uid = data.result._id;
+          cookie.save("uid", uid, { path: "/" });
+        })
           .catch((error) => {
-            console.log(error.message);
+            console.log(error);
           });
       }
     return (

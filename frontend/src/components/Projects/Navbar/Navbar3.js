@@ -24,12 +24,13 @@ const Navbar3 = () => {
             <a className="nav-item nav-link" href="/projects">Projects</a>  
           </div>
         
-          <a href="/" >
-        <img src={logout_icon} className="logo-two" alt="timemator"/>
-      </a>
+        
         </div>
         
       </div>
+      <a href="/" >
+        <img src={logout_icon} className="logoutBtn" alt="timemator"/>
+      </a>
     </nav>
   );
 };

@@ -2,14 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 
-// Display all projects
-router.get('/', (req, res) => {
-    res.send('Hello world!');
-})
+const { getAllProjects, getProjectFiles, createProject } = require('../controllers/projects');
 
-// Create a new project
-// router.post('/create', (req, res) => {
-    
-// })
+router.use('/', getAllProjects);
+router.use('/project', getProjectFiles);
+router.use('/create', createProject);
 
 module.exports = router;

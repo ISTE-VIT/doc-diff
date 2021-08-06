@@ -1,0 +1,23 @@
+.grey{
+    background: #666D73;
+    height: 90vh;
+}
+
+.dgrey{
+    background: #3A4750;
+}
+
+.editor{ 
+    margin-top: 10vh;
+}
+
+.col-lg-10
+{
+    padding: 0px !important;
+}
+
+.col-lg-2{
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+}
+ 

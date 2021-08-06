@@ -14,17 +14,17 @@ const Google = ({text}) => {
       body
     }
 
-    await fetch("https://doc-diff.herokuapp.com/users/google", requestOptions).then((response) => {
+    await fetch("http://localhost:5000/users/google", requestOptions).then((response) => {
       const data = response.json();
-      if(response.status===200)
+      if(response.status===201)
           {
             cookie.save("key", googleData.profileObj.email, { path: "/" });
-            window.location.href = "https://affectionate-noether-b42e7d.netlify.app/projects"
+            window.location.href = "http://localhost:3000/projects"
           }
       return data;
     }).then((data) => {
 
-      if (data.status === 200) {
+      if (data.status === 201) {
         // Redirect here
         console.log("Login Successful");
       } else {
@@ -32,7 +32,7 @@ const Google = ({text}) => {
         console.log("Login Unsuccessful");
       }
     })
-      .catch((error) => { console.log(error.message); });
+      .catch((error) => { console.log(error); });
   };
 
   return (

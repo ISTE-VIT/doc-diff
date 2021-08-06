@@ -28,13 +28,12 @@
   .navbar-collapse{ 
       margin-left: 11%;
   }
+
  .navbar-icon{
    display: flex;
  }
- .logo-two{
-  position: absolute;
-  left: 91.81%;
-  right: 5.28%;
-  top: 2.93%;
-  bottom: 92.38%;
+
+ .logoutBtn{ 
+    height:40px !important;
+    width:auto;
  }
