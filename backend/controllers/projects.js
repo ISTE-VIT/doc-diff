@@ -14,10 +14,10 @@ const getAllProjects = (req, res) => {
     return res.status(200).send(projects)
 }
 
-const getProjectFiles = (req, res) => {
+const getProjectFiles = async (req, res) => {
     const { uid, fid } = req.body
-    
-    const folder = Project.find({ uid, fid })
+
+    const folder = await Project.find({ uid, fid })
 
     if (!folder) {
         return res.status(404).send('No project found')
