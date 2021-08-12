@@ -1,4 +1,4 @@
-import File from "./File";
+import File from "./File"; 
 import "./body.css";
 import { DiffEditor } from "@monaco-editor/react";
 import { useState,useRef } from "react";
@@ -17,7 +17,7 @@ const Body = () => {
     <div className="editor">
       <div className="row">
         <div className="col-lg-2 grey">
-          <File />
+          <File /> 
         </div>
         <div className="col-lg-10">
           <DiffEditor
@@ -31,6 +31,7 @@ const Body = () => {
             />
             </div> 
       </div>
+      
     </div>
   );
 };
