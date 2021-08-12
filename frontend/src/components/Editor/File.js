@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import FolderTree, {FolderIcon,FileIcon,FolderOpenIcon} from 'react-folder-tree';
+import FolderTree, { FolderIcon, FileIcon, FolderOpenIcon } from 'react-folder-tree';
 import 'react-folder-tree/dist/style.css';
 import axios from "axios";
 import cookie from "react-cookies";
@@ -9,20 +9,33 @@ const File = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [objectArray, setObjectArray] = useState(null);
   let files;
+  const [filesMap, setFilesMap] = useState({})
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(objectArray);
   }, [objectArray])
 
-  function insert(children = [], [head, ...tail]) {
-    let child = children.find(child => child.name === head);
-    if (!child) children.push(child = {name: head, children: []});
-    if (tail.length > 0) insert(child.children, tail);
+  function insert(children = [], path, fullPath) {
+    const [head, ...tail] = path
+
+    console.log("path :", path)
+    let child = children.find(child => {
+
+
+      return child.name === head
+    });
+
+    console.log("fullpath:", fullPath)
+    if (!child) children.push(
+      child = { name: head, children: [], content: filesMap[fullPath.join("/")] });
+    if (tail.length > 0) insert(child.children, tail, fullPath);
     return children;
   }
 
-  const onTreeStateChange = (state, event) => {console.log(state, event);
-  console.log(state)}
+  const onTreeStateChange = (state, event) => {
+    console.log(state, event);
+    console.log(state)
+  }
 
   let paths = []
 
@@ -38,20 +51,33 @@ const File = () => {
           path: file.webkitRelativePath,
           content: fileContent,
         });
-        paths.push(file.webkitRelativePath)
+
+        if (
+          !file.webkitRelativePath.includes(".git")) {
+          console.log("non git file:", file.webkitRelativePath)
+          setFilesMap(oldState => ({
+            ...oldState,
+            [file.webkitRelativePath]: fileContent
+          }))
+
+          paths.push(file.webkitRelativePath)
+        }
         resolve(files);
       };
       reader.readAsText(file);
     });
   };
-  
+
   const handleUpload = async () => {
-    for (let i of selectedFile) files = await processFile(i);
-    
-    setObjectArray ( paths
-    .map(path => path.split('/'))
-    .reduce((children, path) => insert(children, path), []));
- 
+    for (let file of selectedFile) files = await processFile(file);
+
+    setObjectArray(paths
+      .map(path => path.split('/'))
+      .reduce((children, path) => {
+        // console.log("children",children)
+        return insert(children, path, path)
+      }, []));
+
     // const uid = cookie.load("uid");
 
     // const body = { uid, files };
@@ -73,15 +99,19 @@ const File = () => {
       />
       <label htmlFor="actual-btn">Upload File</label>
       <button className="upload_btn" onClick={handleUpload}>Upload!</button>
-     <FolderTree
-      data={objectArray ? objectArray[0]:{}}  
-      showCheckbox={ false }     
-      readOnly
-      indexPixels={0}  
-      onChange={ onTreeStateChange }
-    />
+      <FolderTree
+        onNameClick={({ nodeData, defaultOnClick }) => {
+          defaultOnClick()
+          console.log("clicked :", nodeData.content)
+        }}
+        data={objectArray ? objectArray[0] : {}}
+        showCheckbox={false}
+        readOnly
+        indexPixels={0}
+        onChange={onTreeStateChange}
+      />
     </div>
-  ); 
+  );
 };
 
 export default File;
