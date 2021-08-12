@@ -7,7 +7,7 @@ return(
     <Navbar3/>
     <Section4/>
     </>
-)
+ )
 };
 
 export default Projects
