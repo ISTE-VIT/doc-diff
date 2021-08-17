@@ -2,22 +2,26 @@
     background: #666D73;
     height: 90vh;
 }
-
-.dgrey{
-    background: #3A4750;
+ 
+.editor-page{
+    margin-top: 5.2vw;
 }
 
-.editor{ 
-    margin-top: 10vh;
+.split {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
 }
 
-.col-lg-10
-{
-    padding: 0px !important;
+.gutter {
+    background-color: grey;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    z-index: 200;
 }
 
-.col-lg-2{
-    padding-right: 0px !important;
-    padding-top: 0px !important;
-}
+.gutter.gutter-horizontal {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+    cursor: col-resize;
+} 
  

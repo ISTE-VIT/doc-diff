@@ -2,10 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-const { getAllProjects, getProjectFiles, createProject } = require('../controllers/projects');
+const { getAllProjects, createProject, getProjectById, updateShareableProject } = require('../controllers/projects');
 
-router.use('/', getAllProjects);
-router.use('/project', getProjectFiles);
-router.use('/create', createProject);
+router.get('/all', getAllProjects);
+router.post('/create', createProject);
+router.get('/:id', getProjectById);
+router.patch('/share', updateShareableProject);
 
 module.exports = router;

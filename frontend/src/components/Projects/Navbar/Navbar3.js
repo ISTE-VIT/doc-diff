@@ -7,7 +7,7 @@ const Navbar3 = () => {
 
   return (
 
-    <nav className="navbar navbar-expand-lg fixed-top"> 
+    <nav className="navbar navbar-expand-lg fixed-top shadow-none"> 
       <a href="/" className="logo-margin">
         <img src={logo} className="logo-" alt="timemator"/>
       </a>
