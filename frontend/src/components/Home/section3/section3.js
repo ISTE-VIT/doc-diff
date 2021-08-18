@@ -26,22 +26,22 @@ const section3 = () => {
       <div className="footer">
         <img src={wave} className="wave" alt="wave" />
         <div className="icons" >
-          <a className="icon" href="/">
+          <a className="social-icon" href="/">
             <img src={mail} alt="mail"/>
           </a>
-          <a className="icon" href="/">
+          <a className="social-icon" href="/">
             <img src={facebook} alt="facebook"/>
           </a>
-          <a className="icon" href="/">
+          <a className="social-icon" href="/">
             <img src={twitter} alt="twitter"/>
           </a>
-          <a className="icon" href="/">
+          <a className="social-icon" href="/">
             <img src={instagram} alt="instagram" />
           </a>
-          <a className="icon" href="/">
+          <a className="social-icon" href="/">
             <img src={youtube} alt="youtube"/>
           </a>
-          <a className="icon" href="/">
+          <a className="social-icon" href="/">
             <img src={linkedin} alt="linkedin"/>
           </a>
         </div>

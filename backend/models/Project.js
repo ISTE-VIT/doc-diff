@@ -1,21 +1,27 @@
 const mongoose = require('mongoose');
 
+const childrenSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    content: {
+        type: String,
+    }
+})
+
+childrenSchema.add({ children: [childrenSchema] })
+
 const projectSchema = new mongoose.Schema({
     uid: {
         type: String,
         required: true,
     },
-    fid: {
-        type: String,
-        required: true,
-    },
     name: {
         type: String,
-        required: true,
+        default: "Untitled",
     },
-    desc: {
-        type: String,
-    }
-})
+    children: [childrenSchema]
+});
 
 module.exports = mongoose.model('Project', projectSchema);

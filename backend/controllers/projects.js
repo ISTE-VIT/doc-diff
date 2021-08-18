@@ -2,38 +2,36 @@ const mongoose = require('mongoose');
 
 const Project = require('../models/Project')
 
-const getAllProjects = (req, res) => {
-    const { uid } = req.body
+const getAllProjects = async (req, res) => {
+    const { uid } = req.query
 
-    const projects = Project.find({ uid })
+    const projects = await Project.find({ uid })
 
-    if (!projects) {
-        return res.status(404).send('No projects found')
-    }
+    if (!projects) return res.status(404).send('No projects found')
 
     return res.status(200).send(projects)
 }
 
-const getProjectFiles = (req, res) => {
-    const { uid, fid } = req.body
-    
-    const folder = Project.find({ uid, fid })
+const getProjectFiles = async (req, res) => {
+    // const { uid, fid } = req.body
 
-    if (!folder) {
-        return res.status(404).send('No project found')
-    }
+    // const folder = await Project.find({ uid, fid })
 
-    return res.status(200).send(folder)
+    // if (!folder) {
+    //     return res.status(404).send('No project found')
+    // }
+
+    // return res.status(200).send(folder)
 }
 
-const createProject = (req, res) => {
-    const { uid, fid, name, desc } = req.body
+const createProject = async (req, res) => {
+    const { uid, name, objectArray } = req.body
 
-    const project = new Project({ uid, fid, name, desc })
+    const project = new Project({ uid, name, children: objectArray })
 
-    Project.create(project)
+    await project.save()
 
-    return res.status(201).send('Successfully created project')
+    return res.status(201).send(project)
 }
 
 module.exports = { getAllProjects, getProjectFiles, createProject }

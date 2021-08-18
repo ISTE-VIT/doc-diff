@@ -1,13 +1,14 @@
 import logo from "../../../images/Logo.svg";
 import "./Navbar3.css";
 import logout_icon from "../../../images/logout_icon.svg";
+import ProjectModal from "../Project-Modal/ProjectModal";
 
 
 const Navbar3 = () => {
 
   return (
 
-    <nav className="navbar navbar-expand-lg fixed-top"> 
+    <nav className="navbar navbar-expand-lg fixed-top shadow-none"> 
       <a href="/" className="logo-margin">
         <img src={logo} className="logo-" alt="timemator"/>
       </a>
@@ -21,7 +22,7 @@ const Navbar3 = () => {
             <a className="nav-link dot px-5 disabled" href="/#" >      ●      </a>
             <a className="nav-item nav-link" href="/editor">Editor</a>
             <a className="nav-link dot px-5 disabled" href="/#">      ●      </a>
-            <a className="nav-item nav-link" href="/projects">Projects</a>  
+            <ProjectModal />  
           </div>
         
         
