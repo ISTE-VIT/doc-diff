@@ -6,7 +6,6 @@ const cors = require('cors');
 const app = express();
 const projectsRoute = require('./routes/projects.js');
 const usersRoute = require('./routes/users.js');
-const editorRoute = require('./routes/editor.js');
 // const auth = require('./middleware/auth.js');
 
 app.use(express.json({limit: '50mb'}))
@@ -15,7 +14,6 @@ app.use(cors())
 
 app.use('/projects', projectsRoute);
 app.use('/users', usersRoute);
-app.use('/editor', editorRoute);
 
 const PORT = process.env.PORT || 3000;
 

@@ -7,10 +7,13 @@
 
   .shadow-none{
   box-shadow: none !important;
+<<<<<<< HEAD
   }
 
   .noBorder{
     border:none;
+=======
+>>>>>>> 48793095b67aa06702fa20deb02fed1fa31afe19
   }
   
   a.disabled {

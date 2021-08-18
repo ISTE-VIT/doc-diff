@@ -21,7 +21,15 @@ const projectSchema = new mongoose.Schema({
         type: String,
         default: "Untitled",
     },
+<<<<<<< HEAD
     children: [childrenSchema]
+=======
+    children: [childrenSchema],
+    shareable: {
+        type: Boolean,
+        default: false,
+    }
+>>>>>>> 48793095b67aa06702fa20deb02fed1fa31afe19
 });
 
 module.exports = mongoose.model('Project', projectSchema);
