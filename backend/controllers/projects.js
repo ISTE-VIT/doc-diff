@@ -6,37 +6,11 @@ const getAllProjects = async (req, res) => {
     const { uid } = req.query
 
     const projects = await Project.find({ uid })
-<<<<<<< HEAD
-
-=======
->>>>>>> 48793095b67aa06702fa20deb02fed1fa31afe19
     if (!projects) return res.status(404).send('No projects found')
 
     return res.status(200).send(projects)
 }
 
-<<<<<<< HEAD
-const getProjectFiles = async (req, res) => {
-    // const { uid, fid } = req.body
-
-    // const folder = await Project.find({ uid, fid })
-
-    // if (!folder) {
-    //     return res.status(404).send('No project found')
-    // }
-
-    // return res.status(200).send(folder)
-}
-
-const createProject = async (req, res) => {
-    const { uid, name, objectArray } = req.body
-
-    const project = new Project({ uid, name, children: objectArray })
-
-    await project.save()
-
-    return res.status(201).send(project)
-=======
 const createProject = async (req, res) => {
     const { uid, name, objectArray } = req.body
 
@@ -77,7 +51,6 @@ const updateShareableProject = async (req, res) => {
         const project = await Project.findByIdAndUpdate(id, shareable)
 
     return res.status(200).send(project)
->>>>>>> 48793095b67aa06702fa20deb02fed1fa31afe19
 }
 
 module.exports = { getAllProjects, createProject, getProjectById, updateShareableProject }
