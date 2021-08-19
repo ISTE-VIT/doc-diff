@@ -20,6 +20,16 @@
     width: 75%;
     display: flex;
     justify-content: center;
+    padding: 10px 10% 10px 10% !important; 
+  }
+
+  .google{
+    display: flex;
+    align-items: center;
+  }
+
+  .texts{
+    padding-left: 10px;
   }
 
   .signupbody{
