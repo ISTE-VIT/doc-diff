@@ -35,7 +35,7 @@
   .content {
     padding: 1rem;
     font-size: 1.8rem;
-    margin-top: 2%;
+    margin-top: 2%; 
   }
   
   .actions {
@@ -43,6 +43,7 @@
     display: flex;
     justify-content: flex-end;
   }
+
 
 .modalBtn{ 
     border-radius: 10px !important;

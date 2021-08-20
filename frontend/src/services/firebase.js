@@ -23,15 +23,15 @@ const googleProvider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => { 
   (auth
     .signInWithPopup(googleProvider))
-    .then((res) => { 
-      cookie.save("uid", res.user.uid, { path: "/" }); 
-      cookie.save("key", res.credential.idToken, { path: "/" });  
+    .then((res) => {  
+      cookie.save("key", res.user.uid, { path: "/" });  
           const requestOptions = {
             method: 'POST', 
             headers: {
               'Content-Type': 'application/json'
             },
             body:JSON.stringify({
+              email:res.user.email,
               tokenId:res.credential.idToken, 
             })
         }; 
@@ -49,8 +49,7 @@ export const signInWithGoogle = () => {
     }  
 
 export const logOut = () => {
-  cookie.remove("key");
-  cookie.remove("uid");
-  // window.location.href = "http://localhost:3000/"
+  cookie.remove("key"); 
+  window.location.href = "http://localhost:3000/"
 }
 

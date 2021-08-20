@@ -9,6 +9,7 @@
     margin-bottom: 10%;
     margin-top: -5% !important;
   }
+ 
 
   .google{
     border-radius: 10px !important;
@@ -20,14 +21,16 @@
     width: 75%;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 10px 10% 10px 10% !important; 
   }
 
-  .google{
-    display: flex;
-    align-items: center;
-  }
 
+  .centerBtn {
+    display: flex;
+    justify-content: center !important;
+  }
+ 
   .texts{
     padding-left: 10px;
   }

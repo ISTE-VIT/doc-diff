@@ -6,12 +6,14 @@ import Signup from "./pages/Signup";
 import Projects from "./pages/Projects";
 import Editor from "./pages/Editor";
 import ProtectedRoute from "./components/Protected/ProtectedRoute";
+import {AuthProvider} from './components/context/AuthContext'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() { 
   
   return ( 
      <Router>
+       <AuthProvider>
         <Switch>
           <Route exact path="/"  >
             <Home />
@@ -31,6 +33,7 @@ function App() {
           }}
         />
         </Switch>
+        </AuthProvider>
       </Router>
   );
 }

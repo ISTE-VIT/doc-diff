@@ -1,5 +1,5 @@
 const dotenv = require('dotenv').config();
-
+const bcrypt = require("bcryptjs");
 const User = require('../models/User.js');
 
 const signUp = async (req, res) => {
@@ -19,7 +19,7 @@ const signUp = async (req, res) => {
     }
 }
 
-const google = (req, res) => {
+const google = async (req, res) => {
     const { email, tokenId } = req.body;
 
     try {

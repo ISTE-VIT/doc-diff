@@ -1,9 +1,7 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import Google from "../Signup/body/Google";
-
-import Card from './Card';
-import Button from './Button';
+import Google from "../Signup/body/GButton";
+import Card from './Card'; 
 import classes from './ErrorModal.module.css';
 
 const ErrorModal = (props) => {
@@ -20,8 +18,8 @@ const ErrorModal = (props) => {
           <p>{props.message}</p>
         <button className= {classes.modalBtn} block size="lg" type="submit" onClick={() => history.push('/signup')}>
               Register
-        </button>
-        <Google text="Signup with Google"/> 
+        </button> 
+        <Google className="centerBtn" text="Signup with Google"/> 
         </div> 
       </Card>
     </div>

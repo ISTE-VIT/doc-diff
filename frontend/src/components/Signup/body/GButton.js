@@ -2,7 +2,7 @@ import { signInWithGoogle } from "../../../services/firebase";
 
 const GButton = (props) => {
   return (
-    <div className="googleBtn">
+    <div className={`"googleBtn" + ${props.className}`}>
       <button className="google" onClick={signInWithGoogle}>
       <svg width="27" height="24" viewBox="0 0 51 45" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M43.1588 22.8833C43.1588 21.6868 43.039 20.5362 42.8166 19.4316H25.0922V25.9592H35.2204C34.7842 28.0686 33.4583 29.8558 31.4651 31.0524V35.2865H37.5472C41.1057 32.3487 43.1588 28.0225 43.1588 22.8833Z" fill="#4285F4"/>
