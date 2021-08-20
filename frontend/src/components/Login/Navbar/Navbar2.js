@@ -1,4 +1,6 @@
 import logo from "../../../images/Logo.svg";
+import logout_icon from "../../../images/logout_icon.svg";
+import { logOut } from "../../../services/firebase";
 import "./Navbar2.css";
 
 const Navbar = () => {
@@ -21,6 +23,9 @@ const Navbar = () => {
             <a className="nav-item nav-link" href="/#aboutus">About us</a>  
           </div>
       </div>
+          <button className="noBorder" onClick={logOut}>
+        <img src={logout_icon} className="logoutBtn" alt="timemator"/>
+      </button>
     </nav>
   );
 };
