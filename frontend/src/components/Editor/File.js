@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import FolderTree from 'react-folder-tree';
+import FolderTree,{testData} from 'react-folder-tree';
 // import axios from "axios";
 // import cookie from "react-cookies";
 import SaveModal from "./SaveModal";
@@ -61,6 +61,7 @@ const File = (props) => {
 
   // Runs on file upload, used to await setSelectedFiles
   useEffect(() => {
+    console.log(testData)
     handleFileUpload();
   }, [selectedFiles])
 
@@ -82,7 +83,7 @@ const File = (props) => {
             defaultOnClick()
             props.changeContent(nodeData.content)
           }}
-          data={ objectArray ? objectArray[0] : {} }
+          data={testData }
           showCheckbox={false}
           indentPixels={15}
           readOnly
