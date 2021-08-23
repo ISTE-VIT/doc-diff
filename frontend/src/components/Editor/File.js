@@ -1,15 +1,10 @@
 import FolderTree, { testData } from 'react-folder-tree';
-// import axios from "axios";
 import _ from "lodash"
-// import cookie from "react-cookies";
 import SaveModal from "./SaveModal";
 import 'react-folder-tree/dist/style.css';
 import "./File.css";
 import { useState } from 'react';
 
-// const createFolderAndAddFile = (folderPath, fileName, treeObject) => {
-
-// }
 
 const getFolderTree = (treeData, resultObject) => {
 
@@ -37,10 +32,10 @@ const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
   })
-  const onUploadClick = (files) => {
+  const onUploadClick = async (files) => {
     console.log(files)
     const treeData = {}
-    Object.values(files).forEach(async file => {
+    await Promise.all(Object.values(files).map(async file => {
       const directoryRegex = /^(.+)\/([^/]*)$/; // first group gives all directories excluding final file, second group gives file name which is not really needed
       const matches = directoryRegex.exec(file.webkitRelativePath)
 
@@ -51,7 +46,7 @@ const File = (props) => {
           content: await file.text(),
         })
       }
-    })
+    }))
 
 
     console.log("treedata:", treeData)
@@ -62,12 +57,13 @@ const File = (props) => {
     console.log(testData)
   }
 
+  let folderTree = null
   if (state.treeData) {
-    const folderTree = getFolderTree(state.treeData, {
-      name: {}
+    folderTree = getFolderTree(state.treeData, {
+      name: ""
       // Object.keys(state.treeData)[0]
-    })
-    console.log("folder Tree:", folderTree.children[0])
+    }).children[0]
+    // console.log("folder Tree:", folderTree)
   }
   return (
     <>
@@ -83,18 +79,19 @@ const File = (props) => {
       />
       <label htmlFor="actual-btn">Upload file/folder</label>
       <div className="fileupload">
-        <FolderTree
+        {folderTree && <FolderTree
           // onNameClick={({ nodeData, defaultOnClick }) => {
           //   defaultOnClick()
           //   props.changeContent(nodeData.content)
           // }}
           data={
-            testData
+            folderTree
           }
+
           showCheckbox={false}
           indentPixels={15}
           readOnly
-        />
+        />}
       </div>
       <SaveModal />
     </>
