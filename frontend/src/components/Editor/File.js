@@ -2,6 +2,7 @@ import FolderTree, { testData } from 'react-folder-tree';
 import _ from "lodash"
 import SaveModal from "./SaveModal";
 import { useState } from 'react';
+import NameModal from "./NameModal";
 import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
 import "./File.css";
@@ -33,11 +34,13 @@ const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
   })
-  const name = "project1";
+  const [nameModal,setNameModal] = useState(false)
+  const [projectName,setProjectName] = useState("") 
   let body;
   const uid = cookie.load("key");
   const onUploadClick = async (files) => {
     console.log(files)
+    setNameModal(true)
     const treeData = {}
     await Promise.all(Object.values(files).map(async file => {
       const directoryRegex = /^(.+)\/([^/]*)$/; // first group gives all directories excluding final file, second group gives file name which is not really needed
@@ -67,11 +70,18 @@ const File = (props) => {
       name: ""
       // Object.keys(state.treeData)[0]
     }).children[0] 
-    body = {uid, name, folderTree};
+    body = {uid, projectName, folderTree};
+    console.log(body)
     // console.log("folder Tree:", folderTree)
   }
+  
+  const errorHandler = () => {
+    setNameModal(null);
+}
   return (
     <>
+    {nameModal && (<NameModal title="Project Name" message="Please give your Project a name" onConfirm={errorHandler} changeName={projectName => {setProjectName(projectName)
+     setNameModal(null);}}/>)}
       <input
         directory=""
         webkitdirectory=""
@@ -87,7 +97,7 @@ const File = (props) => {
         {folderTree && <FolderTree
           onNameClick={({ nodeData, defaultOnClick }) => {
             defaultOnClick()
-            props.changeContent(nodeData.content)
+            nodeData.content ? props.changeContent(nodeData.content) : console.log()
           }}
           data={
             folderTree
