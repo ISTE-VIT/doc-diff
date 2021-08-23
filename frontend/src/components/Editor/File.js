@@ -1,118 +1,91 @@
 import { useEffect, useState } from "react";
 import FolderTree from 'react-folder-tree';
+// import axios from "axios";
+// import cookie from "react-cookies";
+import SaveModal from "./SaveModal";
 import 'react-folder-tree/dist/style.css';
-import axios from "axios"; 
-import cookie from "react-cookies";
 import "./File.css";
 
 const File = (props) => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [objectArray, setObjectArray] = useState(null);   
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  let objectArray;
+  let filesMap = {};
+  let paths = [];
 
-  useEffect(()=>{  
-    setObjectArray(JSON.parse(localStorage.getItem('files')));  
-  },[]);
+  const body = {};
 
-  let [filesMap, setFilesMap] = useState({});
-  let files; 
-
-  function insert(children = [], [head, ...tail], fullPath) {
+  // Used to create the nested objectArray of file objects
+  const insert = (children = [], [head, ...tail], fullPath) => {
     let child = children.find(child => { return child.name === head });
 
-    if (!child) children.push(
-      child = { name: head, children: [], content: filesMap[fullPath.join("/")] }
-    );
-
+    if (!child) children.push(child = { name: head, children: [], content: filesMap[fullPath.join("/")] });
     if (tail.length > 0) insert(child.children, tail, fullPath);
+
     return children;
   }
 
-  const processContent = (file,fileContent) => {
-    return new Promise ((resolve,reject) => {
-      setFilesMap(oldState => ({
-        ...oldState,
-        [file.webkitRelativePath]: fileContent
-      }))
-      console.log(filesMap)
-      resolve(fileContent);
-    }
-    )
-  }
-  
-  let paths = []
-  
-  const processFile = (file) => {
-    files = [];
+  // Used to read the file content and create the paths array and filesMap dictionary
+  const handleFileReader = (file) => {
     const reader = new FileReader();
-    
-    return new Promise((resolve, reject) => {
-      reader.onload = async (e) => {
-        const fileContent = e.target.result;
-        
-        if (!file.webkitRelativePath.includes(".git")) {
-          let trash = await processContent(file,fileContent);
-          paths.push(file.webkitRelativePath) 
-        }
-        resolve(files);
-      };
-      reader.readAsText(file);
-    });
-  };
-  
-  const handleUpload = async () => {
-    for (let file of selectedFile) files = await processFile(file);
 
-    setObjectArray(paths
-      .map(path => path.split('/'))
-      .reduce((children, path) => {
-        return insert(children, path, path)
-      }, []));
-      
-      console.log(objectArray);
-      
-      const uid = cookie.load("uid");
-      const name = "test";
-      
-      localStorage.setItem('files',JSON.stringify(objectArray)); 
-      
-      const body = {uid, name, objectArray};
-      console.log(body);
-      
-      axios.post("http://localhost:5000/projects/create", body).then((res) => {
-        console.log(res);
-      });
-    };
-    
-      // const handleFile = (e) => {
-      //   setSelectedFile(e.target.files) 
-      //   handleUpload();   
-      //   handleUpload();   
-      //   handleUpload();   
-      // }
-      
-      return (
-        <>
+    return new Promise((resolve, reject) => {
+      reader.onload = (e) => {
+        const fileContent = e.target.result;
+        const path = file.webkitRelativePath;
+
+        // Includes only files which are not related to GitHub
+        if (!path.includes(".git")) {
+          paths.push(path);
+          filesMap[path] = fileContent;
+        }
+
+        resolve(path, fileContent)
+      };
+
+      reader.readAsText(file);
+    })
+  }
+
+  // Used upon file upload to create and send the body to the server
+  const handleFileUpload = () => {
+    // Iterates through selectedFiles and reads the contents of each file
+    Object.values(selectedFiles).map(file => handleFileReader(file))
+
+    // Calls the insert function to create the objectArray
+    objectArray = paths
+    .map(path => path.split('/'))
+    .reduce((children, path) => insert(children, path, path), []);
+
+    console.log(objectArray);
+  }
+
+  // Runs on file upload, used to await setSelectedFiles
+  useEffect(() => {
+    handleFileUpload();
+  }, [selectedFiles])
+
+  return (
+    <>
       <input
         directory=""
         webkitdirectory=""
         type="file"
         id="actual-btn"
         hidden
-        onChange={(e) => setSelectedFile(e.target.files) }
-        />
+        onChange={e => setSelectedFiles(e.target.files)}
+      />
       <label htmlFor="actual-btn">Upload file/folder</label>
-      <button className="upload_btn" onClick={handleUpload}>Upload!</button>
-        <button className="save_btn">Save to Projects</button>
+      <SaveModal body={ body } />
       <div className="fileupload">
-      <FolderTree
-        onNameClick={({ nodeData, defaultOnClick }) => { 
-          defaultOnClick()
-          props.changeContent(nodeData.content)
-        }}
-        data={objectArray ? objectArray[0] : {}}
-        showCheckbox={false} 
-        indentPixels={15} 
-        readOnly
+        <FolderTree
+          onNameClick={({ nodeData, defaultOnClick }) => {
+            defaultOnClick()
+            props.changeContent(nodeData.content)
+          }}
+          data={ objectArray ? objectArray[0] : {} }
+          showCheckbox={false}
+          indentPixels={15}
+          readOnly
         />
       </div>
     </>

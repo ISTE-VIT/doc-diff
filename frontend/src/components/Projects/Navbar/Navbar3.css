@@ -8,6 +8,10 @@
   .shadow-none{
   box-shadow: none !important;
   }
+
+  .noBorder{
+    border:none;
+  }
   
   a.disabled {
     pointer-events: none; 
