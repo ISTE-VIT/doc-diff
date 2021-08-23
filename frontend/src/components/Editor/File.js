@@ -1,9 +1,10 @@
 import FolderTree, { testData } from 'react-folder-tree';
 import _ from "lodash"
 import SaveModal from "./SaveModal";
+import { useState } from 'react';
+import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
 import "./File.css";
-import { useState } from 'react';
 
 
 const getFolderTree = (treeData, resultObject) => {
@@ -32,6 +33,9 @@ const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
   })
+  const name = "project1";
+  let body;
+  const uid = cookie.load("key");
   const onUploadClick = async (files) => {
     console.log(files)
     const treeData = {}
@@ -62,7 +66,8 @@ const File = (props) => {
     folderTree = getFolderTree(state.treeData, {
       name: ""
       // Object.keys(state.treeData)[0]
-    }).children[0]
+    }).children[0] 
+    body = {uid, name, folderTree};
     // console.log("folder Tree:", folderTree)
   }
   return (
@@ -92,7 +97,7 @@ const File = (props) => {
           readOnly
         />}
       </div>
-      <SaveModal />
+      <SaveModal body={body}/>
     </>
   );
 };

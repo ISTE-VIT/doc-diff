@@ -7,10 +7,10 @@ import axios from "axios";
 const SaveModal = (props = { body: {} }) => {
     const [error, setError] = useState(null);
 
-    const handleClick = () => {
-        const key = cookie.load("key");
+    const handleClick = async() => {
+        const key = cookie.load("key"); 
         if (key) {
-            axios.post("http://localhost:5000/projects/create", props.body).then((res) => {
+            await axios.post("http://localhost:5000/projects/create", props.body).then((res) => {
                 console.log(res);
             });
             window.location.href = "http://localhost:3000/projects"
