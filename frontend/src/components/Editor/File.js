@@ -65,6 +65,7 @@ const File = (props) => {
     
 
   const onUploadClick = async (files) => {
+    cookie.remove("id")
     console.log(files) 
     setNameModal(true)  
     setFolderData(null)
@@ -106,7 +107,7 @@ const File = (props) => {
   
   const errorHandler = () => {
     setNameModal(null);
-}
+  }
    
     if(folderData)
     {
@@ -125,7 +126,6 @@ const File = (props) => {
         hidden
         onChange={e => {
           onUploadClick(e.target.files)
-          cookie.remove("id")
         }}
       />
       <div className="fileupload">

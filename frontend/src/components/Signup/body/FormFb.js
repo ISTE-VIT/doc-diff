@@ -90,7 +90,7 @@ var FormFb=()=> {
                 ref={confirmRef} 
               />
             </Form.Group>
-            <Button className= "signupBtn" disabled={loading} block size="lg" type="submit" >
+            <Button className= "signupBtn margintop" disabled={loading} block size="lg" type="submit" >
               Register
             </Button>
           </Form>
