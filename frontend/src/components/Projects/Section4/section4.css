@@ -1,67 +1,10 @@
-/* .section4 {
+.projects {
     background-color: #fff !important ;
     padding: 1% 1% 1% 1% !important;
     font-family: Montserrat !important;
+    margin-top: 8vw;
   }
-  
-  .sec2head {
-    font-weight: bolder;
-    text-align: center;
-  }
-  .rowcards {
-    background-color: #fff !important;
-  }
-  
-  .cards {
-    margin-top: 6%;
-    background-color: #fff;
-  }
-  .row {
-    padding-left: 15px;
-    padding-right: 0;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .card {
-    padding: 0px 20px;
-    background-color: #fff !important;
-    border: transparent !important;
-    text-align: center;
-    font-size: 24px;
-  }
-  
-  .card > div > p {
-    margin-top: 12%;
-  }
-  
-  .card > div > h5 {
-    font-size: 30px !important;
-  }
-  
-  .card > div > button {
-    padding: 5px 40px 5px 40px !important;
-  }
-  
-  .card-title {
-    font-weight: bold;
-    margin-top: 5%;
-  }
-  
-  .btn4 {
+ 
+  .card-img{
     border-radius: 10px !important;
-    border: 3px solid #00adb5 !important;
-    margin-top: 10%;
-    max-height: 2.5rem;
-    font-size: 1.05rem !important;
-    background-color: #fff !important;
-    color: #00adb5 !important;
-    text-align: center;
   }
-  .showmore {
-    background-color: transparent !important;
-    vertical-align: middle;
-  } */

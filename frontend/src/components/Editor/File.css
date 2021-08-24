@@ -10,29 +10,17 @@ label {
     text-align: center;
 } 
 
-
 .save_btn {
-    background-color: #00adb5;
+    text-align: center;
+    background-color: #00adb5; 
     color: white;
     padding: 0.5rem;
+    width:300px;
     font-family: sans-serif; 
-    cursor: pointer; 
-    width:300px ;  
+    cursor: pointer;  
     position: fixed;
     bottom: 0px !important;  
-}
-
-.upload_btn {
-    background-color: #1E1E1E;
-    color: white; 
-    font-family: sans-serif; 
-    cursor: pointer; 
-    width:100%; 
-    box-sizing: border-box; 
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
+} 
 
 .fileupload{
     padding-left: 20px;

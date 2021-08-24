@@ -4,7 +4,7 @@ import { DiffEditor } from "@monaco-editor/react";
 import { useState,useRef } from "react";
 import Split from 'react-split'
 
-const Body = () => {
+const Body = (props) => {
 
   // var [name, setName] = useState("Choose a file");
   var [code, setCode] = useState("Paste Code Here");
@@ -20,7 +20,7 @@ const Body = () => {
       <div className="row"> 
       <Split className="split" minSize={200} gutterSize={10} sizes={[190,800]}>
         <div className="grey" >
-          <File changeContent={content => setContent(content)} />
+          <File changeContent={content => setContent(content)}  />
         </div>
         <div className="">
           <DiffEditor

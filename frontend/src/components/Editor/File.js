@@ -1,9 +1,9 @@
 import FolderTree, { testData } from 'react-folder-tree';
 import _ from "lodash"
 import SaveModal from "./SaveModal";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import NameModal from "./NameModal";
-import cookie from "react-cookies";
+import cookie from "react-cookies"; 
 import 'react-folder-tree/dist/style.css';
 import "./File.css";
 
@@ -22,10 +22,8 @@ const getFolderTree = (treeData, resultObject) => {
       return getFolderTree(treeData[key], {
         name: key
       })
-
     }
   })
-
   // console.log(result)
   return resultObject
 }
@@ -34,10 +32,26 @@ const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
   })
-  const [nameModal,setNameModal] = useState(false)
+  const [nameModal,setNameModal] = useState(false) 
   const [projectName,setProjectName] = useState("") 
-  let body;
   const uid = cookie.load("key");
+  let folderTree = null;
+  let body; 
+ 
+  // useEffect(()=> {
+  //   const persistState = localStorage.getItem('files'); 
+    
+  //   if (persistState) {
+  //     try {
+  //       folderTree = (JSON.parse(persistState));  
+  //       console.log(folderTree)
+  //     } catch (e) {
+  //       // is not json
+  //     }
+  //   } 
+  // },[]) 
+    
+
   const onUploadClick = async (files) => {
     console.log(files)
     setNameModal(true)
@@ -64,12 +78,15 @@ const File = (props) => {
     console.log(testData)
   }
 
-  let folderTree = null
   if (state.treeData) {
     folderTree = getFolderTree(state.treeData, {
       name: ""
       // Object.keys(state.treeData)[0]
     }).children[0] 
+    if(folderTree)
+    {
+    localStorage.setItem('files',JSON.stringify(folderTree));
+    }
     body = {uid, projectName, folderTree};
     console.log(body)
     // console.log("folder Tree:", folderTree)
@@ -92,20 +109,20 @@ const File = (props) => {
           onUploadClick(e.target.files)
         }}
       />
-      <label htmlFor="actual-btn">Upload file/folder</label>
       <div className="fileupload">
+      <label htmlFor="actual-btn">Upload file/folder</label>
         {folderTree && <FolderTree
           onNameClick={({ nodeData, defaultOnClick }) => {
             defaultOnClick()
             nodeData.content ? props.changeContent(nodeData.content) : console.log()
           }}
           data={
-            folderTree
+            folderTree ? folderTree : {}
           }
           showCheckbox={false}
           indentPixels={15}
           readOnly
-        />}
+          />}
       </div>
       <SaveModal body={body}/>
     </>

@@ -8,7 +8,7 @@ const SaveModal = (props = { body: {} }) => {
     const [error, setError] = useState(null);
 
     const handleClick = async() => {
-        const key = cookie.load("key"); 
+        const key = cookie.load("key");  
         if (key) {
             await axios.post("http://localhost:5000/projects/create", props.body).then((res) => {
                 console.log(res);
