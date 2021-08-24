@@ -23,17 +23,20 @@ const Body = () => {
     });
 
   const handleClick = (id) => {
-    fetch(`http://localhost:5000/projects/${id}`, requestOptions)
-      .then((response) => {
-        const data = response.json();
-        return data;
-      })
-      .then((data) => {
-        console.log(data.files);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+    cookie.save("id", id, { path: "/" });   
+    window.location.href = "http://localhost:3000/editor"
+    // fetch(`http://localhost:5000/projects/${id}`, requestOptions)
+    //   .then((response) => {
+    //     const data = response.json();
+    //     return data;
+    //   })
+    //   .then((data) => {
+    //     console.log(data.files);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   return (
@@ -42,21 +45,10 @@ const Body = () => {
       <div className="row cards">
         {projects &&
           projects.map((project) => {
+            let id = project._id
             return (
               <div className="col-lg-4">
-                <div
-                  className="card"
-                  onClick={() => { 
-                    return (
-                      <Redirect
-                        to={{
-                          pathname: "/editor",
-                          state: { id: project._id },
-                        }}
-                      />
-                    );
-                  }}
-                >
+                <div className="card" onClick={() => {handleClick(id)}}>
                   <img src={img4} className="card-img" alt="timemator" />
                   <div className="card-body">
                     <h5 className="card-title">{project.name}</h5>

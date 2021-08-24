@@ -32,29 +32,42 @@ const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
   })
-  const [nameModal,setNameModal] = useState(false) 
+  const [nameModal,setNameModal] = useState(false)  
   const [projectName,setProjectName] = useState("") 
+  const [folderData,setFolderData] = useState(null) 
   const uid = cookie.load("key");
   let folderTree = null;
-  let body; 
- 
-  // useEffect(()=> {
-  //   const persistState = localStorage.getItem('files'); 
-    
-  //   if (persistState) {
-  //     try {
-  //       folderTree = (JSON.parse(persistState));  
-  //       console.log(folderTree)
-  //     } catch (e) {
-  //       // is not json
-  //     }
-  //   } 
-  // },[]) 
+  let body;  
+
+  useEffect(()=>{
+    setFolderData(null)
+  },[nameModal])
+
+
+  const id = cookie.load("id");
+  const requestOptions = {
+    method: "GET",
+  };
+  if(id){
+    fetch(`http://localhost:5000/projects/${id}`, requestOptions)
+      .then((response) => {
+        const data = response.json();
+        return data;
+      })
+      .then((data) => {
+        console.log(data.files);
+        setFolderData(data.files); 
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } 
     
 
   const onUploadClick = async (files) => {
-    console.log(files)
-    setNameModal(true)
+    console.log(files) 
+    setNameModal(true)  
+    setFolderData(null)
     const treeData = {}
     await Promise.all(Object.values(files).map(async file => {
       const directoryRegex = /^(.+)\/([^/]*)$/; // first group gives all directories excluding final file, second group gives file name which is not really needed
@@ -68,7 +81,6 @@ const File = (props) => {
         })
       }
     }))
-
 
     console.log("treedata:", treeData)
     setState(oldState => ({
@@ -95,6 +107,12 @@ const File = (props) => {
   const errorHandler = () => {
     setNameModal(null);
 }
+   
+    if(folderData)
+    {
+      folderTree = folderData 
+    }   
+ 
   return (
     <>
     {nameModal && (<NameModal title="Project Name" message="Please give your Project a name" onConfirm={errorHandler} changeName={projectName => {setProjectName(projectName)
@@ -107,6 +125,7 @@ const File = (props) => {
         hidden
         onChange={e => {
           onUploadClick(e.target.files)
+          cookie.remove("id")
         }}
       />
       <div className="fileupload">
@@ -118,7 +137,7 @@ const File = (props) => {
           }}
           data={
             folderTree ? folderTree : {}
-          }
+          }  
           showCheckbox={false}
           indentPixels={15}
           readOnly
