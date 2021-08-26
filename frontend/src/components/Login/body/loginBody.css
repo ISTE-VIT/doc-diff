@@ -1,7 +1,7 @@
 .loginBody >div >h2{
   font-size: 40px !important;
   margin-bottom: 10%;
-  margin-top: 5% !important;
+  margin-top: 1% !important;
 }
 
 .google{
@@ -16,12 +16,28 @@
   justify-content: center;
 }
 
+.foot{
+  display: flex;  
+  padding: 0% 10% 0% 10%;
+  margin-top: 3%; 
+  text-align: center;
+  width: inherit;
+}
+
+.foot > h6{
+  font-size:14px;
+}
+
+.nobg{
+  background: transparent;
+  font-size:14px;
+}
+
 .loginBody{
 background-color: white;
 padding: 12% 5% 3% 10% !important;  
 font-family: Montserrat !important;
-margin-right: 0px !important; 
-overflow: hidden !important;
+margin-right: 0px !important;  
 }
 
 .loginImage{

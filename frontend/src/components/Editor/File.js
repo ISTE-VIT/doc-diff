@@ -63,7 +63,9 @@ const File = (props) => {
   }
 
   const onUploadClick = async (files) => {
-    setNameModal(true)
+    cookie.remove("id")
+    console.log(files) 
+    setNameModal(true)  
     setFolderData(null)
     const treeData = {}
     await Promise.all(Object.values(files).map(async file => {
@@ -122,7 +124,6 @@ const File = (props) => {
         hidden
         onChange={e => {
           onUploadClick(e.target.files)
-          cookie.remove("id")
         }}
       />
       <div className="fileupload">
