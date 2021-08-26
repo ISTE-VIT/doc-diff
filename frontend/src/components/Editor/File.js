@@ -1,15 +1,13 @@
+import { useState, useEffect } from 'react';
 import FolderTree, { testData } from 'react-folder-tree';
 import _ from "lodash"
 import SaveModal from "./SaveModal";
-import { useState,useEffect } from 'react';
 import NameModal from "./NameModal";
-import cookie from "react-cookies"; 
+import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
 import "./File.css";
 
-
 const getFolderTree = (treeData, resultObject) => {
-
   resultObject.children = Object.keys(treeData).map(key => {
     if ("content" in treeData[key]) {
       // means its a file
@@ -32,23 +30,24 @@ const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
   })
-  const [nameModal,setNameModal] = useState(false)  
-  const [projectName,setProjectName] = useState("") 
-  const [folderData,setFolderData] = useState(null) 
+  const [nameModal, setNameModal] = useState(false)
+  const [projectName, setProjectName] = useState("")
+  const [folderData, setFolderData] = useState(null)
   const uid = cookie.load("key");
   let folderTree = null;
-  let body;  
+  let body;
 
-  useEffect(()=>{
+  useEffect(() => {
     setFolderData(null)
-  },[nameModal])
-
+  }, [nameModal])
 
   const id = cookie.load("id");
+
   const requestOptions = {
     method: "GET",
   };
-  if(id){
+
+  if (id) {
     fetch(`http://localhost:5000/projects/${id}`, requestOptions)
       .then((response) => {
         const data = response.json();
@@ -56,17 +55,15 @@ const File = (props) => {
       })
       .then((data) => {
         console.log(data.files);
-        setFolderData(data.files); 
+        setFolderData(data.files);
       })
       .catch((error) => {
         console.log(error);
       });
-  } 
-    
+  }
 
   const onUploadClick = async (files) => {
-    console.log(files) 
-    setNameModal(true)  
+    setNameModal(true)
     setFolderData(null)
     const treeData = {}
     await Promise.all(Object.values(files).map(async file => {
@@ -94,29 +91,29 @@ const File = (props) => {
     folderTree = getFolderTree(state.treeData, {
       name: ""
       // Object.keys(state.treeData)[0]
-    }).children[0] 
-    if(folderTree)
-    {
-    localStorage.setItem('files',JSON.stringify(folderTree));
+    }).children[0]
+    if (folderTree) {
+      localStorage.setItem('files', JSON.stringify(folderTree));
     }
-    body = {uid, projectName, folderTree};
+    body = { uid, projectName, folderTree };
     console.log(body)
     // console.log("folder Tree:", folderTree)
   }
-  
+
   const errorHandler = () => {
     setNameModal(null);
-}
-   
-    if(folderData)
-    {
-      folderTree = folderData 
-    }   
- 
+  }
+
+  if (folderData) {
+    folderTree = folderData
+  }
+
   return (
     <>
-    {nameModal && (<NameModal title="Project Name" message="Please give your Project a name" onConfirm={errorHandler} changeName={projectName => {setProjectName(projectName)
-     setNameModal(null);}}/>)}
+      {nameModal && (<NameModal title="Project Name" message="Please give your Project a name" onConfirm={errorHandler} changeName={projectName => {
+        setProjectName(projectName)
+        setNameModal(null);
+      }} />)}
       <input
         directory=""
         webkitdirectory=""
@@ -129,21 +126,19 @@ const File = (props) => {
         }}
       />
       <div className="fileupload">
-      <label htmlFor="actual-btn">Upload file/folder</label>
+        <label htmlFor="actual-btn">Upload file/folder</label>
         {folderTree && <FolderTree
           onNameClick={({ nodeData, defaultOnClick }) => {
             defaultOnClick()
             nodeData.content ? props.changeContent(nodeData.content) : console.log()
           }}
-          data={
-            folderTree ? folderTree : {}
-          }  
-          showCheckbox={false}
-          indentPixels={15}
+          data={ folderTree ? folderTree : {} }
+          showCheckbox={ false }
+          indentPixels={ 15 }
           readOnly
-          />}
+        />}
       </div>
-      <SaveModal body={body}/>
+      <SaveModal body={body} />
     </>
   );
 };

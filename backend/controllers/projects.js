@@ -12,12 +12,12 @@ const getAllProjects = async (req, res) => {
 }
 
 const createProject = async (req, res) => {
-    const { uid, projectName, folderTree } = req.body 
+    const { uid, projectName, folderTree, shareable } = req.body 
 
     const existingProject = await Project.findOne({ uid, name: projectName })
     if (existingProject) return res.status(409).send('Project with the same name already exists')
 
-    const project = new Project({ uid, name: projectName, files: folderTree })
+    const project = new Project({ uid, name: projectName, files: folderTree, shareable })
     await project.save()
 
     return res.status(201).send(project)

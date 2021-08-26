@@ -1,8 +1,8 @@
-import "./section4.css";
+import { useState, useEffect } from "react";
 import cookie from "react-cookies";
-import { useState } from "react";
 import { Redirect } from "react-router";
 import img4 from "../../../images/img4.svg";
+import "./section4.css";
 
 const Body = () => {
   const uid = cookie.load("key");
@@ -23,8 +23,7 @@ const Body = () => {
     });
 
   const handleClick = (id) => {
-
-    cookie.save("id", id, { path: "/" });   
+    cookie.save("id", id, { path: "/" });
     window.location.href = "http://localhost:3000/editor"
     // fetch(`http://localhost:5000/projects/${id}`, requestOptions)
     //   .then((response) => {
@@ -39,6 +38,12 @@ const Body = () => {
     //   });
   };
 
+  const HandleImageFetch = (project) => {
+    useEffect(() => {
+      fetch(`https://api.unsplash.com/photos/random/?client_id=xKOzooQ6ieoBx8cQtdZ1jyMCwGmsHZT-QzY2ZU14kls&query=${project.name}`)
+    }, [])
+  }
+
   return (
     <div className="projects">
       <h1 className="blue sec2head extra-bold">Projects</h1>
@@ -46,9 +51,10 @@ const Body = () => {
         {projects &&
           projects.map((project) => {
             let id = project._id
+            HandleImageFetch(project)
             return (
               <div className="col-lg-4">
-                <div className="card" onClick={() => {handleClick(id)}}>
+                <div className="card" onClick={() => { handleClick(id) }}>
                   <img src={img4} className="card-img" alt="timemator" />
                   <div className="card-body">
                     <h5 className="card-title">{project.name}</h5>

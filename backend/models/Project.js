@@ -7,7 +7,7 @@ const projectSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        default: "Untitled",
+        required: true,
     },
     files: Object,
     shareable: {
