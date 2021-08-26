@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import cookie from "react-cookies";
-import { useEffect, useState } from "react";  
+import cookie from "react-cookies"; 
 import img5 from "../../../images/22.jpg";
  
 
