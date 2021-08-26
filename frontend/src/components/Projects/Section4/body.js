@@ -1,4 +1,4 @@
-import "./section4.css";
+import { useState, useEffect } from "react";
 import cookie from "react-cookies";
 import { useEffect, useState } from "react";  
 import img5 from "../../../images/22.jpg";
