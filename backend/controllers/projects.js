@@ -91,4 +91,4 @@ const updateFileTree = async (req, res) => {
 
 
 
-module.exports = { getAllProjects, createProject, getProjectById, updateShareableProject }
+module.exports = { getAllProjects, createProject, getProjectById, updateShareableProject, deleteProject, updateProjectName, updateFileTree }
