@@ -2,11 +2,10 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import Google from "../Signup/body/GButton";
 import Card from './Card'; 
-import classes from './ErrorModal.module.css';
+import classes from './ErrorModal.module.css'; 
 
 const ErrorModal = (props) => {
-  const history = useHistory();
-
+  const history = useHistory(); 
   return (
     <div>
       <div className={classes.backdrop} onClick={props.onConfirm} />

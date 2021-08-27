@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import FolderTree, { testData } from 'react-folder-tree';
 import _ from "lodash"
-import SaveModal from "./SaveModal";
-import NameModal from "./NameModal";
+import SaveModal from "../Editor/SaveModal";
+import NameModal from "../Editor/NameModal";
 import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
-import "./File.css";
+import "../Editor/File.css";
 
 const getFolderTree = (treeData, resultObject) => {
   resultObject.children = Object.keys(treeData).map(key => {
@@ -32,15 +32,44 @@ const File = (props) => {
   })
   const [nameModal, setNameModal] = useState(false)
   const [projectName, setProjectName] = useState("")
-  const [shareable, setShareable] = useState(false) 
+  const [shareable, setShareable] = useState(false)
+  const [folderData, setFolderData] = useState(null)
   const uid = cookie.load("key");
   let folderTree = null;
   let body;
- 
-  const onUploadClick = async (files) => {
-    cookie.remove("id")
-    console.log(files) 
-    setNameModal(true)   
+
+  useEffect(() => {
+    setFolderData(null)
+  }, [nameModal])
+
+  const id = props.id;
+  console.log(id);
+
+  const requestOptions = {
+    method: "GET",
+  };
+
+  useEffect (()=> {
+    if (id) {
+        fetch(`http://localhost:5000/projects/${id}`, requestOptions)
+          .then((response) => {
+            const data = response.json();
+            return data;
+          })
+          .then((data) => {
+            console.log(data.files);
+            setFolderData(data.files);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+  },[])
+  
+
+  const onUploadClick = async (files) => { 
+    console.log(files)  
+    setFolderData(null)
     const treeData = {}
     await Promise.all(Object.values(files).map(async file => {
       const directoryRegex = /^(.+)\/([^/]*)$/; // first group gives all directories excluding final file, second group gives file name which is not really needed
@@ -76,7 +105,10 @@ const File = (props) => {
   const errorHandler = () => {
     setNameModal(null);
   }
- 
+
+  if (folderData) {
+    folderTree = folderData
+  }
 
   return (
     <>

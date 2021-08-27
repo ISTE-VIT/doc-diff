@@ -1,5 +1,5 @@
-import File from "./File"; 
-import "./body.css";
+import Read from "./read"; 
+import "../Editor/body.css";
 import { DiffEditor } from "@monaco-editor/react";
 import { useState,useRef } from "react";
 import Split from 'react-split'
@@ -19,7 +19,7 @@ const Body = (props) => {
       <div className="row"> 
       <Split className="split" minSize={200} gutterSize={10} sizes={[190,800]}>
         <div className="grey" >
-          <File changeContent={content => setContent(content)}  />
+          <Read changeContent={content => setContent(content)} id={props.id} />
         </div>
         <div className="">
           <DiffEditor

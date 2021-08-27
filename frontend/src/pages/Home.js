@@ -1,5 +1,4 @@
-// import Navbar from '../components/Home/Navbar/Navbar'; 
-import Navbar from "../components/UI/Navbar"
+ import Navbar from "../components/UI/Navbar"
 import Section1 from '../components/Home/section1/section1'; 
 import Section2 from '../components/Home/section2/section2'; 
 import Section3 from '../components/Home/section3/section3';  

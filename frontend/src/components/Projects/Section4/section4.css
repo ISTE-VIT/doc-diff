@@ -1,10 +1,39 @@
 .projects {
-    background-color: #fff !important ;
-    padding: 1% 1% 1% 1% !important;
-    font-family: Montserrat !important;
-    margin-top: 8vw;
-  }
+  background-color: #fff !important ;
+  padding: 1% 1% 1% 1% !important;
+  font-family: Montserrat !important;
+  margin-top: 8vw;
+}
+
+.card-img {
+  border-radius: 10px !important;
+  position: relative;
+}
+
+.projectBtn {
+  border-color: transparent !important;
+  background: transparent;
+  color:white
+}  
+
+.overlay {
+  position: absolute;  
+  background: rgba(0, 0, 0, 0.6);   
+  transition: .5s ease;
+  opacity:0; 
+  z-index: 100;
+  border-radius: 10px !important;
+}
  
-  .card-img{
-    border-radius: 10px !important;
-  }
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.container:hover{
+  color:grey
+}
+
+.overlayIcons{
+  padding:10px  10px ;
+  width:60px;
+}

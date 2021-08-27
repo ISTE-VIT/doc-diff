@@ -19,7 +19,7 @@ const SaveModal = (props = { body: {} }) => {
             setError({
                 title: "To save your project, you need to create an account.",
                 message: "Don’t worry, it’s free!",
-            });
+            }); 
         }
     }
 
@@ -30,7 +30,7 @@ const SaveModal = (props = { body: {} }) => {
     return (
         <div>
             {error && (
-                <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />
+                <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} save="true" body={props.body}/>
             )}
             <button className="save_btn" onClick={handleClick}>Save to Projects</button>
         </div>
