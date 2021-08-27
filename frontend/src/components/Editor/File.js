@@ -93,11 +93,8 @@ const File = (props) => {
     folderTree = getFolderTree(state.treeData, {
       name: ""
       // Object.keys(state.treeData)[0]
-    }).children[0]
-    if (folderTree) {
-      localStorage.setItem('files', JSON.stringify(folderTree));
-    }
-    body = { uid, projectName, folderTree };
+    }).children[0]  
+    body = {uid, projectName, folderTree };
     console.log(body)
     // console.log("folder Tree:", folderTree)
   }
