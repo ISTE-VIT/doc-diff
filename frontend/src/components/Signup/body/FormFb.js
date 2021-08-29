@@ -34,7 +34,7 @@ var FormFb=()=> {
         }
     
         await fetch("http://localhost:5000/users/signup", requestOptions).then((response) => {
-          const data = response.json();
+          const data = response.json(); 
           if(response.status===200)
           {
             cookie.save("key", emailRef, { path: "/" });

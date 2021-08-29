@@ -16,8 +16,7 @@ const Body = () => {
 
   useEffect(() => {
     fetch(`http://localhost:5000/projects/all?uid=${uid}`, requestOptions)
-      .then((response) => {
-        console.log("abhi");
+      .then((response) => { 
         const data = response.json();
         return data;
       })
@@ -41,8 +40,7 @@ const Body = () => {
       <div className="row cards">
         {projects &&
           projects.map((project) => {
-            let id = project._id;
-            console.log(project.name);
+            let id = project._id; 
             return (
               <div className="col-lg-4"> 
                   <div

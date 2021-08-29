@@ -3,11 +3,10 @@ import axios from "axios";
 
 
 const DeleteHandler = (id) => {
-    let body;
-    console.log(":HIIII");
+    let body; 
     const uid = cookie.load("key");
     body = {uid,id}
-    axios.post("http://localhost:5000/projects/delete", body).then((res) => {
+    axios.delete("http://localhost:5000/projects/delete", body).then((res) => {
         console.log(res);
     });
 }
