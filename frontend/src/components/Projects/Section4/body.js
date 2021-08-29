@@ -35,6 +35,7 @@ const Body = () => {
   };
 
   return (
+    <>
     <div className="projects">
       <h1 className="blue sec2head extra-bold">Projects</h1>
       <div className="row cards">
@@ -51,7 +52,7 @@ const Body = () => {
                   >
                     <div className="container">
                     <div className="overlay btnGrp">
-                      <button className="projectBtn" onClick={DeleteHandler(id)}>
+                      <button className="projectBtn" onClick={() => DeleteHandler(id)}>
                       <img
                         src={delicon}
                         className="overlayIcons"
@@ -84,6 +85,7 @@ const Body = () => {
           })}
       </div>
     </div>
+    </>
   );
 };
 

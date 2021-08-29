@@ -54,7 +54,7 @@ const updateShareableProject = async (req, res) => {
 }
 
 const deleteProject = async (req, res) => {
-    const { id, uid } = req.body
+    const { id, uid } = req.query
 
     const existingProject = await Project.findById(id)
     if (!existingProject) return res.status(404).send('Project not found')
