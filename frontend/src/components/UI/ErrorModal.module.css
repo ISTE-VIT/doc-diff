@@ -55,8 +55,12 @@
     color: white !important;
     width:75%;
     margin-top: 10%;
-  }
-  
+  } 
+
+.yesNoBtn{
+  margin-top: 5% !important;
+}
+
   @media (min-width: 768px) {
     .modal {
       left: calc(50% - 20rem);

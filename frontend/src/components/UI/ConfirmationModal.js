@@ -1,8 +1,8 @@
-import React from 'react'; 
-import Card from './Card'; 
-import classes from './ErrorModal.module.css'; 
+import React from "react";
+import Card from "./Card";
+import classes from "./ErrorModal.module.css";
 
-const ErrorModal = (props) => { 
+const ConfirmationModal = (props) => {
   return (
     <div>
       <div className={classes.backdrop} onClick={props.onConfirm} />
@@ -13,9 +13,10 @@ const ErrorModal = (props) => {
         <div className={classes.content}>
           <p>{props.message}</p>
         </div> 
+        <span className={classes.yesNoBtn}><button onClick={props.onDelete} className="btn3" >Yes</button><button onClick={props.onConfirm} className="btn3 ml" >No</button></span> 
       </Card>
     </div>
   );
 };
 
-export default ErrorModal;
+export default ConfirmationModal;
