@@ -25,7 +25,7 @@ const createProject = async (req, res) => {
 
 const getProjectById = async (req, res) => {
     const { id } = req.params
-    const { uid } = req.body
+    const uid = req.headers.authorization;
 
     const project = await Project.findById(id)
     if (!project) return res.status(404).send('Project not found')
