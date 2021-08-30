@@ -47,6 +47,9 @@ const File = (props) => {
 
   const requestOptions = {
     method: "GET",
+    body:{
+      uid: cookie.load("key") || "00000",
+    }
   };
 
   useEffect (()=> {

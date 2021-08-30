@@ -25,11 +25,12 @@ const createProject = async (req, res) => {
 
 const getProjectById = async (req, res) => {
     const { id } = req.params
+    const { uid } = req.body
 
     const project = await Project.findById(id)
     if (!project) return res.status(404).send('Project not found')
 
-    const { shareable, uid } = project
+    const { shareable  } = project
 
     if (shareable) return res.status(200).send(project)
     else {
