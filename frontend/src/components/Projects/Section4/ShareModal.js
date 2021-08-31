@@ -15,6 +15,7 @@ const ShareModal = (props) => {
         </header>
         <div className={classes.content}>
           <p>{props.message}</p>
+          <input value={`http:localhost:3000/projects/${props.id}`} readOnly></input>
           <div className="shareable">
           <label className="switch">
             <input

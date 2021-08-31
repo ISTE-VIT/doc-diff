@@ -82,6 +82,7 @@ const Body = () => {
           message={share.message}
           onConfirm={errorHandler}
           shareable = {shareStatus}
+          id = {projectId}
           onShare={(shareable) => {
             ShareHandler({projectId,shareable});
             setError(null);
