@@ -41,12 +41,11 @@ const getProjectById = async (req, res) => {
 }
 
 const updateShareableProject = async (req, res) => {
-    const { id } = req.params
+    const { id, shareable, uid } = req.body
 
     const existingProject = await Project.findById(id)
     if (!existingProject) return res.status(404).send('Project not found')
-
-    const { shareable, uid } = existingProject
+ 
 
     if (existingProject.uid !== uid) return res.status(401).send('Unauthorized user')
     const project = await Project.findByIdAndUpdate(id, shareable)

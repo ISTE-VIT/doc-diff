@@ -7,8 +7,10 @@ import linkicon from "../../../images/link.png";
 import renameicon from "../../../images/rename.svg";
 import ConfirmationModal from "../../UI/ConfirmationModal";
 import RenameModal from "./RenameModal";
+import ShareModal  from "./ShareModal";
 import DeleteHandler from "./DeleteHandler.js";
 import RenameHandler from "./RenameHandler.js";
+import ShareHandler from "./ShareHandler";
 import "./section4.css";
 
 const Body = () => {
@@ -17,6 +19,7 @@ const Body = () => {
   const [projectId, setProjectId] = useState("");
   const [error, setError] = useState(null);
   const [rename, setRename] = useState(null); 
+  const [share, setShare] = useState(null); 
 
   const requestOptions = {
     method: "GET",
@@ -45,6 +48,7 @@ const Body = () => {
   const errorHandler = () => {
     setError(null);
     setRename(null);
+    setShare(null);
   };
 
   return (
@@ -67,6 +71,17 @@ const Body = () => {
           onConfirm={errorHandler}
           onRename={name => {
             RenameHandler({projectId,name});
+            setError(null);
+          }}
+        />
+      )}
+      {share && (
+        <ShareModal
+          title={share.title}
+          message={share.message}
+          onConfirm={errorHandler}
+          onShare={(shareable) => {
+            ShareHandler({projectId,shareable});
             setError(null);
           }}
         />
@@ -117,7 +132,15 @@ const Body = () => {
                             alt="timemator"
                           />
                         </button>
-                        <button className="projectBtn">
+                        <button className="projectBtn" 
+                        onClick={() => { 
+                            setProjectId(id); 
+                            setShare({
+                              title:
+                                "Do you want to change your project shareable status?",
+                              message: "Set your shareable status here",
+                            });
+                          }}>
                           <img
                             src={linkicon}
                             className="overlayIcons"
