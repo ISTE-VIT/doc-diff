@@ -3,8 +3,8 @@ import Card from "../../UI/Card";
 import classes from "../../UI/ErrorModal.module.css";
 import "../../Editor/NameModal.css";
 
-const RenameModal = (props) => { 
-  const [share, setShare] = useState(false);
+const ShareModal = (props) => { 
+  const [share, setShare] = useState(props.shareable);
 
   return (
     <div>
@@ -19,6 +19,7 @@ const RenameModal = (props) => {
           <label className="switch">
             <input
               type="checkbox"
+              checked={share}
               onChange={(e) => {
                 setShare(!share);
               }}
@@ -43,4 +44,4 @@ const RenameModal = (props) => {
   );
 };
 
-export default RenameModal;
+export default  ShareModal;

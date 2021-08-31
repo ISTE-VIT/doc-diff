@@ -20,6 +20,7 @@ const Body = () => {
   const [error, setError] = useState(null);
   const [rename, setRename] = useState(null); 
   const [share, setShare] = useState(null); 
+  const [shareStatus,setShareStatus] = useState(null);
 
   const requestOptions = {
     method: "GET",
@@ -80,6 +81,7 @@ const Body = () => {
           title={share.title}
           message={share.message}
           onConfirm={errorHandler}
+          shareable = {shareStatus}
           onShare={(shareable) => {
             ShareHandler({projectId,shareable});
             setError(null);
@@ -134,7 +136,9 @@ const Body = () => {
                         </button>
                         <button className="projectBtn" 
                         onClick={() => { 
-                            setProjectId(id); 
+                            setProjectId(id);
+                            setShareStatus(project.shareable) 
+                            console.log(shareStatus);
                             setShare({
                               title:
                                 "Do you want to change your project shareable status?",
