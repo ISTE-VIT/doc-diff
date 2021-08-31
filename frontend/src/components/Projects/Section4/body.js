@@ -4,15 +4,19 @@ import img5 from "../../../images/22.jpg";
 import delicon from "../../../images/delete.png";
 import editicon from "../../../images/edit.png";
 import linkicon from "../../../images/link.png";
+import renameicon from "../../../images/rename.svg";
 import ConfirmationModal from "../../UI/ConfirmationModal";
+import RenameModal from "./RenameModal";
 import DeleteHandler from "./DeleteHandler.js";
+import RenameHandler from "./RenameHandler.js";
 import "./section4.css";
 
 const Body = () => {
   const uid = cookie.load("key");
   const [projects, setProjects] = useState(false);
-  const [projectId,setProjectId] = useState("");
-  const [error, setError] = useState(null); 
+  const [projectId, setProjectId] = useState("");
+  const [error, setError] = useState(null);
+  const [rename, setRename] = useState(null); 
 
   const requestOptions = {
     method: "GET",
@@ -40,7 +44,8 @@ const Body = () => {
 
   const errorHandler = () => {
     setError(null);
-}
+    setRename(null);
+  };
 
   return (
     <>
@@ -48,10 +53,22 @@ const Body = () => {
         <ConfirmationModal
           title={error.title}
           message={error.message}
-          onConfirm={errorHandler} 
-          onDelete={() => { 
+          onConfirm={errorHandler}
+          onDelete={() => {
             DeleteHandler(projectId);
-          setError(null)}}
+            setError(null);
+          }}
+        />
+      )}
+      {rename && (
+        <RenameModal
+          title={rename.title}
+          message={rename.message}
+          onConfirm={errorHandler}
+          onRename={name => {
+            RenameHandler({projectId,name});
+            setError(null);
+          }}
         />
       )}
       <div className="projects">
@@ -72,11 +89,12 @@ const Body = () => {
                       <div className="overlay btnGrp">
                         <button
                           className="projectBtn"
-                          onClick={() => { 
+                          onClick={() => {
                             setProjectId(id);
                             console.log(projectId);
                             setError({
-                              title:"Are you sure you want to delete this Project ?",
+                              title:
+                                "Are you sure you want to delete this Project ?",
                               message: "You wont be able to recover this.",
                             });
                           }}
@@ -102,6 +120,23 @@ const Body = () => {
                         <button className="projectBtn">
                           <img
                             src={linkicon}
+                            className="overlayIcons"
+                            alt="timemator"
+                          />
+                        </button>
+                        <button
+                          className="projectBtn"
+                          onClick={() => {
+                            setProjectId(id); 
+                            setRename({
+                              title:
+                                "Do you want to rename this Project?",
+                              message: "Give your project a new name",
+                            });
+                          }}
+                        >
+                          <img
+                            src={renameicon}
                             className="overlayIcons"
                             alt="timemator"
                           />
