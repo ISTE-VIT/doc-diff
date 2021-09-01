@@ -38,40 +38,41 @@ const File = (props) => {
   let folderTree = null;
   let body;
 
-  useEffect(() => {
-    setFolderData(null)
-  }, [nameModal])
+  // useEffect(() => {
+  //   setFolderData(null)
+  // }, [nameModal])
 
   const id = props.id;
-  console.log(id);
 
-  const requestOptions = {
-    method: "GET",
-    headers: {
-      authorization: cookie.load("key") || "",
-    },
-  };
 
-  useEffect (()=> {
+
+  useEffect(() => {
+
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        authorization: cookie.load("key") || "",
+      },
+    };
     if (id) {
-        fetch(`http://localhost:5000/projects/${id}`, requestOptions)
-          .then((response) => {
-            const data = response.json();
-            return data;
-          })
-          .then((data) => {
-            console.log(data.files);
-            setFolderData(data.files);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-  },[])
-  
+      fetch(`http://localhost:5000/projects/${id}`, requestOptions)
+        .then((response) => {
+          const data = response.json();
+          return data;
+        })
+        .then((data) => {
+          console.log(data.files);
+          setFolderData(data.files);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [id])
 
-  const onUploadClick = async (files) => { 
-    console.log(files)  
+
+  const onUploadClick = async (files) => {
+    console.log(files)
     setFolderData(null)
     const treeData = {}
     await Promise.all(Object.values(files).map(async file => {
@@ -95,34 +96,37 @@ const File = (props) => {
     console.log(testData)
   }
 
-  if (state.treeData) {
-    folderTree = getFolderTree(state.treeData, {
-      name: ""
-      // Object.keys(state.treeData)[0]
-    }).children[0]  
-    body = {uid, projectName, folderTree ,shareable};
-    console.log(body)
-    // console.log("folder Tree:", folderTree)
-  }
+  // if (state.treeData) {
+  // console.log(state.treeData) // this prints empty object, something is messed up here
+  // folderTree = getFolderTree(state.treeData, {
+  //   name: ""
+  //   // Object.keys(state.treeData)[0]
+  // }).children[0]
+  body = {
+    uid, projectName, folderTree: folderData, shareable
+  };
+  console.log(body)
+  // console.log("folder Tree:", folderTree)
+  // }
 
   const errorHandler = () => {
     setNameModal(null);
   }
 
-  if (folderData) {
-    folderTree = folderData
-  }
+  // if (folderData) {
+  //   folderTree = folderData
+  // }
 
   return (
     <>
       {nameModal && (<NameModal title="Project Name" message="Please give your Project a name" onConfirm={errorHandler} changeName={projectName => {
-        setProjectName(projectName) 
-      }} 
-      changeShare={shareable => {
-        console.log(shareable)
-        setShareable(shareable)
-        setNameModal(null);
+        setProjectName(projectName)
       }}
+        changeShare={shareable => {
+          console.log(shareable)
+          setShareable(shareable)
+          setNameModal(null);
+        }}
       />)}
       <input
         directory=""
@@ -136,14 +140,14 @@ const File = (props) => {
       />
       <div className="fileupload">
         <label className="uploadBtn" htmlFor="actual-btn">Upload file/folder</label>
-        {folderTree && <FolderTree
+        {body.folderTree && <FolderTree
           onNameClick={({ nodeData, defaultOnClick }) => {
             defaultOnClick()
             nodeData.content ? props.changeContent(nodeData.content) : console.log()
           }}
-          data={ folderTree ? folderTree : {} }
-          showCheckbox={ false }
-          indentPixels={ 15 }
+          data={body.folderTree}
+          showCheckbox={false}
+          indentPixels={15}
           readOnly
         />}
       </div>

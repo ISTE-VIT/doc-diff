@@ -7,19 +7,19 @@ import axios from "axios";
 const SaveModal = (props = { body: {} }) => {
     const [error, setError] = useState(null);
 
-    const handleClick = async() => {
-        const key = cookie.load("key");  
+    const handleClick = async () => {
+        const key = cookie.load("key");
         if (key) {
             await axios.post("http://localhost:5000/projects/create", props.body).then((res) => {
                 console.log(res);
             });
-            window.location.href = "http://localhost:3000/projects"
+            window.location.href = "/projects"
         }
         else {
             setError({
                 title: "To save your project, you need to create an account.",
                 message: "Don’t worry, it’s free!",
-            }); 
+            });
         }
     }
 
@@ -30,7 +30,7 @@ const SaveModal = (props = { body: {} }) => {
     return (
         <div>
             {error && (
-                <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} save="true" body={props.body}/>
+                <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} save="true" body={props.body} />
             )}
             <button className="save_btn" onClick={handleClick}>Save to Projects</button>
         </div>
