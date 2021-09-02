@@ -7,7 +7,7 @@ import linkicon from "../../../images/link.png";
 import renameicon from "../../../images/rename.svg";
 import ConfirmationModal from "../../UI/ConfirmationModal";
 import RenameModal from "./RenameModal";
-import ShareModal  from "./ShareModal";
+import ShareModal from "./ShareModal";
 import DeleteHandler from "./DeleteHandler.js";
 import RenameHandler from "./RenameHandler.js";
 import ShareHandler from "./ShareHandler";
@@ -18,9 +18,9 @@ const Body = () => {
   const [projects, setProjects] = useState(false);
   const [projectId, setProjectId] = useState("");
   const [error, setError] = useState(null);
-  const [rename, setRename] = useState(null); 
-  const [share, setShare] = useState(null); 
-  const [shareStatus,setShareStatus] = useState(null);
+  const [rename, setRename] = useState(null);
+  const [share, setShare] = useState(null);
+  const [shareStatus, setShareStatus] = useState(null);
 
   const requestOptions = {
     method: "GET",
@@ -70,8 +70,8 @@ const Body = () => {
           title={rename.title}
           message={rename.message}
           onConfirm={errorHandler}
-          onRename={name => {
-            RenameHandler({projectId,name});
+          onRename={(name) => {
+            RenameHandler({ projectId, name });
             setError(null);
           }}
         />
@@ -81,10 +81,10 @@ const Body = () => {
           title={share.title}
           message={share.message}
           onConfirm={errorHandler}
-          shareable = {shareStatus}
-          id = {projectId}
+          shareable={shareStatus}
+          id={projectId}
           onShare={(shareable) => {
-            ShareHandler({projectId,shareable});
+            ShareHandler({ projectId, shareable });
             setError(null);
           }}
         />
@@ -97,12 +97,7 @@ const Body = () => {
               let id = project._id;
               return (
                 <div className="col-lg-4">
-                  <div
-                    className="card"
-                    // onClick={() => {
-                    //   handleClick(id);
-                    // }}
-                  >
+                  <div className="card">
                     <div className="container">
                       <div className="overlay btnGrp">
                         <button
@@ -135,17 +130,19 @@ const Body = () => {
                             alt="timemator"
                           />
                         </button>
-                        <button className="projectBtn" 
-                        onClick={() => { 
+                        <button
+                          className="projectBtn"
+                          onClick={() => {
                             setProjectId(id);
-                            setShareStatus(project.shareable) 
+                            setShareStatus(project.shareable);
                             console.log(shareStatus);
                             setShare({
                               title:
                                 "Do you want to change your project shareable status?",
                               message: "Set your shareable status here",
                             });
-                          }}>
+                          }}
+                        >
                           <img
                             src={linkicon}
                             className="overlayIcons"
@@ -155,10 +152,9 @@ const Body = () => {
                         <button
                           className="projectBtn"
                           onClick={() => {
-                            setProjectId(id); 
+                            setProjectId(id);
                             setRename({
-                              title:
-                                "Do you want to rename this Project?",
+                              title: "Do you want to rename this Project?",
                               message: "Give your project a new name",
                             });
                           }}
@@ -173,7 +169,14 @@ const Body = () => {
                       <img src={img5} className="card-img" alt="timemator" />
                     </div>
                     <div className="card-body">
-                      <h5 className="card-title">{project.name}</h5>
+                      <h5
+                        className="card-title"
+                        onClick={() => {
+                          handleClick(id);
+                        }}
+                      >
+                        {project.name}
+                      </h5>
                     </div>
                   </div>
                 </div>

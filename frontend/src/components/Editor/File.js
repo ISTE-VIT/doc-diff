@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import FolderTree, { testData } from 'react-folder-tree';
 import _ from "lodash"
 import SaveModal from "./SaveModal";

@@ -1,7 +1,6 @@
 import React from 'react'   
 import { useAuth } from '../../context/AuthContext'
-import { useState, useRef } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useState, useRef } from 'react' 
 import cookie from "react-cookies"; 
 import { Form, Button, Alert } from 'react-bootstrap'
 import "../../Signup/body/Form.css"
@@ -12,8 +11,7 @@ var FormFb=()=> {
     const passwordRef=useRef(); 
     const {login} = useAuth();
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
-    let history = useHistory()  
+    const [loading, setLoading] = useState(false);  
 
      let handleSubmit= async(e)=> {
         e.preventDefault()
