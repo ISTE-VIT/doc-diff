@@ -16,9 +16,7 @@ const File = (props) => {
   const [nameModal, setNameModal] = useState(false)
   const [projectName, setProjectName] = useState("")
   const [shareable, setShareable] = useState(false)
-  const [folderData, setFolderData] = useState(null)
   const uid = cookie.load("key");
-  let folderTree = null;
   let body;
 
   // useEffect(() => {
@@ -43,7 +41,6 @@ const File = (props) => {
         })
         .then((data) => {
           console.log(data.files);
-          setFolderData(data.files);
         })
         .catch((error) => {
           console.log(error);
@@ -54,7 +51,6 @@ const File = (props) => {
 
   const onUploadClick = async (files) => {
     console.log(files)
-    setFolderData(null)
     const treeData = {}
     await Promise.all(Object.values(files).map(async file => {
       const directoryRegex = /^(.+)\/([^/]*)$/; // first group gives all directories excluding final file, second group gives file name which is not really needed
