@@ -1,18 +1,18 @@
 import cookie from "react-cookies";
-import axios from "axios";
+import axios from "../../../utils/axiosForBackend";
 
-const ShareHandler = async (props) => { 
+const ShareHandler = async (props) => {
   const uid = cookie.load("key");
   const body = {
-      id: props.projectId,
-      uid: uid,
-      shareable: props.shareable,
+    id: props.projectId,
+    uid: uid,
+    shareable: props.shareable,
   }
   console.log(body);
   await axios.patch(
-    `http://localhost:5000/projects/share`,body
+    `/projects/share`, body
   );
-  window.location.href = "http://localhost:3000/projects"
+  window.location.href = "/projects"
 };
 
 export default ShareHandler;

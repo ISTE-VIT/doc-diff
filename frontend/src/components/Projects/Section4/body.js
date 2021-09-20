@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "../../../utils/axiosForBackend"
 import cookie from "react-cookies";
 import img5 from "../../../images/22.jpg";
 import delicon from "../../../images/delete.png";
@@ -12,6 +13,7 @@ import DeleteHandler from "./DeleteHandler.js";
 import RenameHandler from "./RenameHandler.js";
 import ShareHandler from "./ShareHandler";
 import "./section4.css";
+import { useHistory } from "react-router";
 
 const Body = () => {
   const uid = cookie.load("key");
@@ -21,16 +23,12 @@ const Body = () => {
   const [rename, setRename] = useState(null);
   const [share, setShare] = useState(null);
   const [shareStatus, setShareStatus] = useState(null);
-
-  const requestOptions = {
-    method: "GET",
-  };
+  const history = useHistory()
 
   useEffect(() => {
-    fetch(`http://localhost:5000/projects/all?uid=${uid}`, requestOptions)
+    axios.get(`/projects/all?uid=${uid}`)
       .then((response) => {
-        const data = response.json();
-        return data;
+        return response.data
       })
       .then((data) => {
         console.log(data);
@@ -39,11 +37,11 @@ const Body = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [uid]);
 
   const handleClick = (id) => {
     cookie.save("id", id, { path: "/" });
-    window.location.href = `http://localhost:3000/projects/${id}`;
+    history.push(`/projects/${id}`);
   };
 
   const errorHandler = () => {
@@ -121,7 +119,7 @@ const Body = () => {
                         <button
                           className="projectBtn"
                           onClick={() => {
-                            window.location.href = `http://localhost:3000/projects/${id}`;
+                            history.push(`/projects/${id}`);
                           }}
                         >
                           <img

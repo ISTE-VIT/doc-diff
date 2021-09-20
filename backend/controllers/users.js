@@ -21,15 +21,15 @@ const signUp = async (req, res) => {
 
 const google = async (req, res) => {
     const { email, tokenId } = req.body;
-
+    console.log("received request")
     try {
         const hashedPassword = await bcrypt.hash(tokenId, 12)
-    
+
         const result = await User.create({
             email,
             password: hashedPassword
         })
-    
+
         res.status(201).json({ message: "Successfully registered with Google" })
     } catch (error) {
         res.status(404).json({ message: "Invalid credentials" })

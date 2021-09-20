@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState } from 'react';
 import FolderTree, { testData } from 'react-folder-tree';
 import _ from "lodash"
 import SaveModal from "./SaveModal";
@@ -7,24 +7,7 @@ import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
 import "./File.css";
 
-const getFolderTree = (treeData, resultObject) => {
-  resultObject.children = Object.keys(treeData).map(key => {
-    if ("content" in treeData[key]) {
-      // means its a file
-      return {
-        name: key,
-        content: treeData[key].content
-      }
-    }
-    else {
-      return getFolderTree(treeData[key], {
-        name: key
-      })
-    }
-  })
-  // console.log(result)
-  return resultObject
-}
+import getFolderTree from '../../utils/getFolderTree';
 
 const File = (props) => {
   const [state, setState] = useState({
@@ -32,15 +15,15 @@ const File = (props) => {
   })
   const [nameModal, setNameModal] = useState(false)
   const [projectName, setProjectName] = useState("")
-  const [shareable, setShareable] = useState(false) 
+  const [shareable, setShareable] = useState(false)
   const uid = cookie.load("key");
   let folderTree = null;
   let body;
- 
+
   const onUploadClick = async (files) => {
     cookie.remove("id")
-    console.log(files) 
-    setNameModal(true)   
+    console.log(files)
+    setNameModal(true)
     const treeData = {}
     await Promise.all(Object.values(files).map(async file => {
       const directoryRegex = /^(.+)\/([^/]*)$/; // first group gives all directories excluding final file, second group gives file name which is not really needed
@@ -67,8 +50,8 @@ const File = (props) => {
     folderTree = getFolderTree(state.treeData, {
       name: ""
       // Object.keys(state.treeData)[0]
-    }).children[0]  
-    body = {uid, projectName, folderTree ,shareable};
+    }).children[0]
+    body = { uid, projectName, folderTree, shareable };
     console.log(body)
     // console.log("folder Tree:", folderTree)
   }
@@ -76,18 +59,18 @@ const File = (props) => {
   const errorHandler = () => {
     setNameModal(null);
   }
- 
+
 
   return (
     <>
       {nameModal && (<NameModal title="Project Name" message="Please give your Project a name" onConfirm={errorHandler} changeName={projectName => {
-        setProjectName(projectName) 
-      }} 
-      changeShare={shareable => {
-        console.log(shareable)
-        setShareable(shareable)
-        setNameModal(null);
+        setProjectName(projectName)
       }}
+        changeShare={shareable => {
+          console.log(shareable)
+          setShareable(shareable)
+          setNameModal(null);
+        }}
       />)}
       <input
         directory=""
@@ -106,9 +89,9 @@ const File = (props) => {
             defaultOnClick()
             nodeData.content ? props.changeContent(nodeData.content) : console.log()
           }}
-          data={ folderTree ? folderTree : {} }
-          showCheckbox={ false }
-          indentPixels={ 15 }
+          data={folderTree ? folderTree : {}}
+          showCheckbox={false}
+          indentPixels={15}
           readOnly
         />}
       </div>

@@ -3,7 +3,7 @@ import Card from "../../UI/Card";
 import classes from "../../UI/ErrorModal.module.css";
 import "../../Editor/NameModal.css";
 
-const ShareModal = (props) => { 
+const ShareModal = (props) => {
   const [share, setShare] = useState(props.shareable);
 
   return (
@@ -15,25 +15,25 @@ const ShareModal = (props) => {
         </header>
         <div className={classes.content}>
           <p>{props.message}</p>
-          <input value={`http:localhost:3000/projects/${props.id}`} readOnly></input>
+          <input value={`/projects/${props.id}`} readOnly></input>
           <div className="shareable">
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={share}
-              onChange={(e) => {
-                setShare(!share);
-              }}
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={share}
+                onChange={(e) => {
+                  setShare(!share);
+                }}
               />
-            <span className="slider round"></span>
-          </label>
-              <div className="text">Shareable</div>
+              <span className="slider round"></span>
+            </label>
+            <div className="text">Shareable</div>
           </div>
 
           <button
-            type="submit" 
+            type="submit"
             className={classes.modalBtn}
-            onClick={() => { 
+            onClick={() => {
               props.onShare(share);
             }}
           >
@@ -45,4 +45,4 @@ const ShareModal = (props) => {
   );
 };
 
-export default  ShareModal;
+export default ShareModal;

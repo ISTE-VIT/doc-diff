@@ -1,31 +1,14 @@
 import { useState, useEffect } from 'react';
-import FolderTree, { testData } from 'react-folder-tree';
+import FolderTree from 'react-folder-tree';
 import _ from "lodash"
 import SaveModal from "../Editor/SaveModal";
 import NameModal from "../Editor/NameModal";
 import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
 import "../Editor/File.css";
-
-const getFolderTree = (treeData, resultObject) => {
-  resultObject.children = Object.keys(treeData).map(key => {
-    if ("content" in treeData[key]) {
-      // means its a file
-      return {
-        name: key,
-        content: treeData[key].content
-      }
-    }
-    else {
-      return getFolderTree(treeData[key], {
-        name: key
-      })
-    }
-  })
-  // console.log(result)
-  return resultObject
-}
-
+import axios from '../../utils/axiosForBackend';
+import getFolderTree
+  from '../../utils/getFolderTree';
 const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
@@ -48,16 +31,14 @@ const File = (props) => {
 
   useEffect(() => {
 
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        authorization: cookie.load("key") || "",
-      },
-    };
     if (id) {
-      fetch(`http://localhost:5000/projects/${id}`, requestOptions)
+      axios.get(`/projects/${id}`, {
+        headers: {
+          authorization: cookie.load("key") || "",
+        },
+      })
         .then((response) => {
-          const data = response.json();
+          const data = response.data;
           return data;
         })
         .then((data) => {
@@ -89,11 +70,15 @@ const File = (props) => {
     }))
 
     console.log("treedata:", treeData)
+    const key = Object.keys(treeData)[0]
+    console.log("getFolderTree ",
+      getFolderTree(treeData[key], {
+        name: key
+      }))
     setState(oldState => ({
       ...oldState,
       treeData
     }))
-    console.log(testData)
   }
 
   // if (state.treeData) {
@@ -103,7 +88,9 @@ const File = (props) => {
   //   // Object.keys(state.treeData)[0]
   // }).children[0]
   body = {
-    uid, projectName, folderTree: folderData, shareable
+    uid, projectName, folderTree: getFolderTree(state.treeData, {
+      name: ""
+    }).children[0], shareable
   };
   console.log(body)
   // console.log("folder Tree:", folderTree)

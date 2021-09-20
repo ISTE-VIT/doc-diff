@@ -12,7 +12,8 @@ const getAllProjects = async (req, res) => {
 }
 
 const createProject = async (req, res) => {
-    const { uid, projectName, folderTree, shareable } = req.body 
+    console.log("creating body:", req.body)
+    const { uid, projectName, folderTree, shareable } = req.body
 
     const existingProject = await Project.findOne({ uid, name: projectName })
     if (existingProject) return res.status(409).send('Project with the same name already exists')
@@ -30,7 +31,7 @@ const getProjectById = async (req, res) => {
     const project = await Project.findById(id)
     if (!project) return res.status(404).send('Project not found')
 
-    const { shareable  } = project
+    const { shareable } = project
 
     if (shareable) return res.status(200).send(project)
     else {
@@ -41,13 +42,13 @@ const getProjectById = async (req, res) => {
 }
 
 const updateShareableProject = async (req, res) => {
-    const { id, shareable, uid } = req.body 
+    const { id, shareable, uid } = req.body
 
     const existingProject = await Project.findById(id)
-    if (!existingProject) return res.status(404).send('Project not found') 
+    if (!existingProject) return res.status(404).send('Project not found')
 
     if (existingProject.uid !== uid) return res.status(401).send('Unauthorized user')
-    const project = await Project.findByIdAndUpdate(id, {shareable}) 
+    const project = await Project.findByIdAndUpdate(id, { shareable })
 
     return res.status(200).send(project)
 }
@@ -69,7 +70,7 @@ const updateProjectName = async (req, res) => {
 
     const existingProject = await Project.findById(id)
     if (!existingProject) return res.status(404).send('Project not found')
- 
+
     if (existingProject.uid !== uid) return res.status(401).send('Unauthorized user')
     const project = await Project.findByIdAndUpdate(id, { name: projectName })
 

@@ -1,19 +1,21 @@
 import cookie from "react-cookies";
 import { useState } from "react";
 import ErrorModal from "../UI/ErrorModal";
-import axios from "axios";
+import axios from "../../utils/axiosForBackend";
+import { useHistory } from "react-router";
 
 
 const SaveModal = (props = { body: {} }) => {
     const [error, setError] = useState(null);
-
+    const history = useHistory()
     const handleClick = async () => {
         const key = cookie.load("key");
         if (key) {
-            await axios.post("http://localhost:5000/projects/create", props.body).then((res) => {
+            console.log("request body:", props.body)
+            await axios.post("/projects/create", props.body).then((res) => {
                 console.log(res);
             });
-            window.location.href = "/projects"
+            history.push("/projects")
         }
         else {
             setError({

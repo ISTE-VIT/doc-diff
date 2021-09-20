@@ -1,18 +1,18 @@
 import cookie from "react-cookies";
-import axios from "axios";
+import axios from "../../../utils/axiosForBackend";
 
-const RenameHandler = async (props) => { 
+const RenameHandler = async (props) => {
   const uid = cookie.load("key");
   const body = {
-      id: props.projectId,
-      uid: uid,
-      projectName:props.name
+    id: props.projectId,
+    uid: uid,
+    projectName: props.name
   }
   console.log(body);
   await axios.patch(
-    `http://localhost:5000/projects/updatename`,body
+    "/projects/updatename", body
   );
-  window.location.href = "http://localhost:3000/projects"
+  window.location.href = "/projects"
 };
 
 export default RenameHandler;

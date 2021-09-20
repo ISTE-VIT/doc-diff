@@ -1,24 +1,23 @@
 import cookie from "react-cookies";
 import { useState } from "react";
 import ErrorModal from "../../UI/ErrorModal";
+import { useHistory } from "react-router";
 
 const ProjectModal = () => {
 
-  const [error, setError] = useState(null);
-
+    const [error, setError] = useState(null);
+    const history = useHistory()
 
     const handleClick = () => {
         const key = cookie.load("key");
-        if(key)
-        {
-            window.location.href = "http://localhost:3000/projects"
+        if (key) {
+            history.push("/projects")
         }
-        else
-        {
+        else {
             setError({
                 title: "To view your projects, you need to create an account.",
                 message: "Don’t worry, it’s free!",
-              });
+            });
         }
     }
 
@@ -28,10 +27,10 @@ const ProjectModal = () => {
 
     return (
         <div>
-        {error && (
-        <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler}/>
-      )}
-        <button className="nav-item nav-link noBorder" href="/projects" onClick={handleClick}>Projects</button>
+            {error && (
+                <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />
+            )}
+            <button className="nav-item nav-link noBorder" href="/projects" onClick={handleClick}>Projects</button>
         </div>
     )
 }

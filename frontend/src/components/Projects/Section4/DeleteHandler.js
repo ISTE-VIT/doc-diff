@@ -1,12 +1,14 @@
 import cookie from "react-cookies";
-import axios from "axios";
+import axios from "../../../utils/axiosForBackend";
+import { useHistory } from "react-router";
 
-const DeleteHandler = async (id) => { 
+const DeleteHandler = async (id) => {
+  const history = useHistory()
   const uid = cookie.load("key");
   await axios.delete(
-    `http://localhost:5000/projects/delete?id=${id}&uid=${uid}`
+    `/projects/delete?id=${id}&uid=${uid}`
   );
-  window.location.href = "http://localhost:3000/projects"
+  history.push("/projects")
 };
 
 export default DeleteHandler;
