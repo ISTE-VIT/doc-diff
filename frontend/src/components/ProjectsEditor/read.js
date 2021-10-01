@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import FolderTree from 'react-folder-tree';
 import _ from "lodash"
-import SaveModal from "../Editor/SaveModal";
+import EditModal from "./EditModal";
 import NameModal from "../Editor/NameModal";
 import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
@@ -13,8 +13,7 @@ const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
   })
-  const [nameModal, setNameModal] = useState(false)
-  const [projectName, setProjectName] = useState("")
+  const [nameModal, setNameModal] = useState(false) 
   const [shareable, setShareable] = useState(false)
   const uid = cookie.load("key");
   let body;
@@ -40,7 +39,7 @@ const File = (props) => {
           return data;
         })
         .then((data) => {
-          console.log(data.files);
+          console.log(data.files); 
         })
         .catch((error) => {
           console.log(error);
@@ -84,7 +83,7 @@ const File = (props) => {
   //   // Object.keys(state.treeData)[0]
   // }).children[0]
   body = {
-    uid, projectName, folderTree: getFolderTree(state.treeData, {
+    uid, id, folderTree: getFolderTree(state.treeData, {
       name: ""
     }).children[0], shareable
   };
@@ -101,16 +100,7 @@ const File = (props) => {
   // }
 
   return (
-    <>
-      {nameModal && (<NameModal title="Project Name" message="Please give your Project a name" onConfirm={errorHandler} changeName={projectName => {
-        setProjectName(projectName)
-      }}
-        changeShare={shareable => {
-          console.log(shareable)
-          setShareable(shareable)
-          setNameModal(null);
-        }}
-      />)}
+    <> 
       <input
         directory=""
         webkitdirectory=""
@@ -134,7 +124,7 @@ const File = (props) => {
           readOnly
         />}
       </div>
-      <SaveModal body={body} />
+      <EditModal body={body} />
     </>
   );
 };

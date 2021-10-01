@@ -81,6 +81,8 @@ const updateFileTree = async (req, res) => {
     const { id, uid, folderTree } = req.body
 
     const existingProject = await Project.findById(id)
+
+    console.log(existingProject);
     if (!existingProject) return res.status(404).send('Project not found')
 
     if (existingProject.uid !== uid) return res.status(401).send('Unauthorized user')
