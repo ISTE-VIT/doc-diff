@@ -22,7 +22,7 @@ var FormFb = () => {
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
         .then((res) => {
-          cookie.save("key", res.user.uid, { path: "/" });
+          cookie.save("key", res.user.uid, { path: "/" }); 
           history.push("/projects")
         })
     } catch (error) {

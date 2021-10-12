@@ -4,7 +4,8 @@ const User = require('../models/User.js');
 
 const signUp = async (req, res) => {
     const { email, password } = req.body
-
+    console.log(email);
+    console.log(password);
     try {
         const hashedPassword = await bcrypt.hash(password, 12)
 
@@ -12,6 +13,8 @@ const signUp = async (req, res) => {
             email,
             password: hashedPassword
         })
+
+
 
         res.status(201).json({ message: "Successful signup" })
     } catch (error) {

@@ -7,8 +7,8 @@ import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
 import "../Editor/File.css";
 import axios from '../../utils/axiosForBackend';
-import getFolderTree
-  from '../../utils/getFolderTree';
+import getFolderTree from '../../utils/getFolderTree';
+
 const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
@@ -39,13 +39,14 @@ const File = (props) => {
           return data;
         })
         .then((data) => {
+          // setState({treeData: data.files.children})
           console.log(data.files); 
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [id])
+  }, [])
 
 
   const onUploadClick = async (files) => {

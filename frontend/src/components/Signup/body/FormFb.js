@@ -4,7 +4,8 @@ import { useAuth } from '../../context/AuthContext'
 import { useState, useRef } from 'react'
 import cookie from "react-cookies";
 import { Form, Button, Alert } from 'react-bootstrap'
-import axios from 'axios';
+import axios from "../../../utils/axiosForBackend"
+
 
 
 var FormFb = () => {
@@ -33,10 +34,10 @@ var FormFb = () => {
     //   body
     // }
 
-    await axios.post("/users/signup", body).then((response) => {
+    await axios.post("/users/signup", JSON.parse(body)).then((response) => {
       const data = response.data;
-      if (response.status === 200) {
-        cookie.save("key", emailRef, { path: "/" });
+      if (response.status === 201) {
+        cookie.save("key", emailRef, { path: "/" }); 
         history.push("/projects")
       }
       return data;

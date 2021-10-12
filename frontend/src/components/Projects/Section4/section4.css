@@ -21,7 +21,7 @@
   background: rgba(0, 0, 0, 0.6);   
   transition: .5s ease;
   opacity:0; 
-  z-index: 100;
+  z-index: 10;
   border-radius: 10px !important;
 }
  
