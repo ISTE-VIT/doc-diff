@@ -4,8 +4,7 @@ import { useAuth } from '../../context/AuthContext'
 import { useState, useRef } from 'react'
 import cookie from "react-cookies";
 import { Form, Button, Alert } from 'react-bootstrap'
-import axios from "../../../utils/axiosForBackend"
-
+import axios from '../../../utils/axiosForBackend';
 
 
 var FormFb = () => {
@@ -17,27 +16,14 @@ var FormFb = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory()
 
-  async function handlePost() {
-    let email = emailRef.current.value;
-    let password = passwordRef.current.value;
-
-    const body = JSON.stringify({
-      email,
-      password,
-    })
-
-    // const requestOptions = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body
-    // }
-
-    await axios.post("/users/signup", JSON.parse(body)).then((response) => {
+  const handlePost = async () => {
+    await axios.post("/users/signup", {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    }).then((response) => {
       const data = response.data;
       if (response.status === 201) {
-        cookie.save("key", emailRef, { path: "/" }); 
+        cookie.save("key", response.email, { path: "/" });
         history.push("/projects")
       }
       return data;
