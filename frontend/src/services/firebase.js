@@ -24,12 +24,11 @@ export const signInWithGoogle = () => {
   (auth
     .signInWithPopup(googleProvider))
     .then((res) => {
-      cookie.save("key", res.user.uid, { path: "/" });
-
       axios.post("/users/google", {
         email: res.user.email,
         tokenId: res.credential.idToken,
       }).then((response) => {
+        cookie.save("key", res.user.uid, { path: "/" });
         const data = response.data;
         return data;
       })
