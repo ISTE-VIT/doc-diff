@@ -13,7 +13,7 @@ const signUp = async (req, res) => {
             password: hashedPassword
         })
 
-        res.status(201).json({ message: "Successful signup" })
+        res.status(201).send(result)
     } catch (error) {
         res.status(500).json({ message: "Something went wrong" })
     }
@@ -21,18 +21,24 @@ const signUp = async (req, res) => {
 
 const google = async (req, res) => {
     const { email, tokenId } = req.body;
-    console.log("received request")
-    try {
-        const hashedPassword = await bcrypt.hash(tokenId, 12)
 
-        const result = await User.create({
-            email,
-            password: hashedPassword
-        })
+    const user = await User.findOne({ email });
 
-        res.status(201).json({ message: "Successfully registered with Google" })
-    } catch (error) {
-        res.status(404).json({ message: "Invalid credentials" })
+    if (!user) {
+        try {
+            const hashedPassword = await bcrypt.hash(tokenId, 12)
+
+            const result = await User.create({
+                email,
+                password: hashedPassword
+            })
+
+            res.status(201).json({ message: "Successfully registered with Google" })
+        } catch (error) {
+            res.status(404).json({ message: "Invalid credentials" })
+        }
+    } else {
+        res.status(200).json({ message: "Signed in with already registered Google account" })
     }
 }
 
