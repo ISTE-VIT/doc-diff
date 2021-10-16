@@ -39,11 +39,11 @@
   }
   
   input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #00ADB5;
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #00ADB5;
   }
   
   input:checked + .slider:before {
@@ -63,4 +63,29 @@
 
   .shareable{ 
       margin-top: 5%;;
+  } 
+
+  .editing{
+    background-color: #ececec !important;
+    border-bottom-right-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+    border: 1.5px solid rgb(133, 133, 133) !important;
+  }
+
+  .copied{
+    margin-top: 3%;
+    color: #00ADB5;
+    font-style: italic;
+    font-size:20px;
+  }
+  
+  .slider-fix{
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 1.2%;
+  }
+
+  .shareable-fix{
+    display: flex;
+    justify-content: flex-start;
   }

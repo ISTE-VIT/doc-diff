@@ -34,6 +34,10 @@
 }  
 
 .social-icon{
-    padding:0px 25px 0px 25px;
+    padding:0px 3px 0px 3px;
     z-index:100;
+}
+
+.social-img{
+    width:50% !important;
 }

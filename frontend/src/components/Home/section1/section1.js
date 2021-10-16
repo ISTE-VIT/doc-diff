@@ -11,7 +11,7 @@ const Section1 = () => {
         <h3 className="txt">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </h3>
-        <Link to="/editor"><button className="nav-link btn3" >
+        <Link to="/editor"><button className="btn3 effect" >
           Go to the Editor
         </button>
         </Link>
