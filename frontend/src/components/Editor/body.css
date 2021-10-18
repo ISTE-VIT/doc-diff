@@ -1,6 +1,6 @@
 .grey{
     background: #666D73;
-    height: 90vh;
+    min-height: 90vh;
 }
  
 .editor-page{
@@ -10,7 +10,7 @@
 .split {
     display: flex;
     flex-direction: row;
-    width: 100vw;
+    min-width: 100vw;
 }
 
 .gutter {

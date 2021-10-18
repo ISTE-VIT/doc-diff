@@ -82,7 +82,7 @@ const File = (props) => {
           onUploadClick(e.target.files)
         }}
       />
-      <div className="fileupload">
+      <div >
         <label className="uploadBtn" htmlFor="actual-btn">Upload file/folder</label>
         {folderTree && <FolderTree
           onNameClick={({ nodeData, defaultOnClick }) => {
