@@ -12,7 +12,6 @@ const getAllProjects = async (req, res) => {
 }
 
 const createProject = async (req, res) => {
-    console.log("creating body:", req.body)
     const { uid, projectName, folderTree, shareable } = req.body
 
     const existingProject = await Project.findOne({ uid, name: projectName })
@@ -82,7 +81,6 @@ const updateFileTree = async (req, res) => {
 
     const existingProject = await Project.findById(id)
 
-    console.log(existingProject);
     if (!existingProject) return res.status(404).send('Project not found')
 
     if (existingProject.uid !== uid) return res.status(401).send('Unauthorized user')

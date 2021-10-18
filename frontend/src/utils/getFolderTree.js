@@ -13,7 +13,6 @@ const getFolderTree = (treeData, resultObject) => {
             })
         }
     })
-    // console.log(result)
     return resultObject
 }
 

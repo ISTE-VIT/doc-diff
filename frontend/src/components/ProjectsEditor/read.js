@@ -13,7 +13,7 @@ const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
   })
-  const [nameModal, setNameModal] = useState(false) 
+  const [nameModal, setNameModal] = useState(false)
   const [shareable, setShareable] = useState(false)
   const uid = cookie.load("key");
   let body;
@@ -23,8 +23,6 @@ const File = (props) => {
   // }, [nameModal])
 
   const id = props.id;
-
-
 
   useEffect(() => {
 
@@ -38,9 +36,15 @@ const File = (props) => {
           const data = response.data;
           return data;
         })
-        .then((data) => {
-          // setState({treeData: data.files.children})
-          console.log(data.files); 
+        .then(async (data) => {
+          const treeData = {};
+          await Promise.all(Object.values(data.files.children).map(async file => {
+            _.set(treeData, data.files.name + "['" + file.name + "']", {
+              content: await file.content,
+            })
+          }))
+          console.log(treeData)
+          setState({treeData: treeData})
         })
         .catch((error) => {
           console.log(error);
@@ -77,28 +81,16 @@ const File = (props) => {
     }))
   }
 
-  // if (state.treeData) {
-  // console.log(state.treeData) // this prints empty object, something is messed up here
-  // folderTree = getFolderTree(state.treeData, {
-  //   name: ""
-  //   // Object.keys(state.treeData)[0]
-  // }).children[0]
   body = {
     uid, id, folderTree: getFolderTree(state.treeData, {
       name: ""
     }).children[0], shareable
   };
-  console.log(body)
-  // console.log("folder Tree:", folderTree)
-  // }
+  // console.log(body.folderTree)
 
   const errorHandler = () => {
     setNameModal(null);
   }
-
-  // if (folderData) {
-  //   folderTree = folderData
-  // }
 
   return (
     <> 
