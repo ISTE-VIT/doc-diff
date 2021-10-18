@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "../../../utils/axiosForBackend"
-import cookie from "react-cookies";
-import img5 from "../../../images/22.jpg";
+import cookie from "react-cookies"; 
+import proj from "../../../images/project.svg";
 import delicon from "../../../images/delete.png";
 import editicon from "../../../images/edit.png";
 import linkicon from "../../../images/link.png";
@@ -96,8 +96,9 @@ const Body = () => {
               return (
                 <div className="col-lg-4">
                   <div className="card">
-                    <div className="container">
-                      <div className="overlay btnGrp">
+                    <div className="image-container">
+                    <img src={proj} className="card-img" alt="timemator" />
+                      <div className="after">
                         <button
                           className="projectBtn"
                           onClick={() => {
@@ -164,7 +165,6 @@ const Body = () => {
                           />
                         </button>
                       </div>
-                      <img src={img5} className="card-img" alt="timemator" />
                     </div>
                     <div className="card-body">
                       <h5

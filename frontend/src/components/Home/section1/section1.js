@@ -8,8 +8,8 @@ const Section1 = () => {
       <div className="col-lg-5">
         <h1 className="extra-bold">Doc Diff</h1>
         <h3 className="blue">By ISTE-VIT</h3>
-        <h3 className="txt">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        <h3 className="txt font-italic">
+          Comparing codes could not be easier!
         </h3>
         <Link to="/editor"><button className="btn3 effect" >
           Go to the Editor

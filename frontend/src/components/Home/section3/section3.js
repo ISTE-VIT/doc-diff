@@ -26,22 +26,19 @@ const section3 = () => {
       <div className="footer">
         <img src={wave} className="wave" alt="wave" />
         <div className="icons" >
-          <a className="social-icon" href="/">
+          <a className="social-icon" href="mailto:iste@vit.ac.in">
             <img className="social-img" src={mail} alt="mail"/>
-          </a>
-          <a className="social-icon" href="/">
-            <img className="social-img" src={twitter} alt="twitter"/>
-          </a>
-          <a className="social-icon" href="/">
+          </a> 
+          <a className="social-icon" href="https://www.instagram.com/iste_vit_vellore/">
             <img className="social-img" src={instagram} alt="instagram" />
           </a>
-          <a className="social-icon" href="/">
+          <a className="social-icon" href="https://www.youtube.com/c/ISTEVITVellore">
             <img className="social-img" src={youtube} alt="youtube"/>
           </a>
-          <a className="social-icon" href="/">
+          <a className="social-icon" href="https://www.linkedin.com/company/indian-society-for-technical-education/mycompany/">
             <img className="social-img" src={linkedin} alt="linkedin"/>
           </a>
-          <a className="social-icon" href="/">
+          <a className="social-icon" href="https://www.facebook.com/ISTE.VIT">
             <img className="social-img" src={facebook} alt="facebook"/>
           </a>
         </div>
