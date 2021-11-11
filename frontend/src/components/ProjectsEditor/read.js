@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
-import FolderTree from 'react-folder-tree';
+
 import _ from "lodash"
-import EditModal from "./EditModal"; 
+import EditModal from "./EditModal";
 import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
 import "../Editor/File.css";
 import axios from '../../utils/axiosForBackend';
 import getFolderTree from '../../utils/getFolderTree';
+import getTreeDataFromFiles from '../../utils/getTreeDataFromFiles';
+import FileFolderTree from '../common/FileFolderTree';
 
 const File = (props) => {
   const [state, setState] = useState({
-    treeData: {}
+    folderTree: {}
   })
   let shareable = false;
   const uid = cookie.load("key");
@@ -27,63 +29,43 @@ const File = (props) => {
       })
         .then((response) => {
           const data = response.data;
-          return data;
-        })
-        .then(async (data) => {
-          const treeData = {};
-          await Promise.all(Object.values(data.files.children).map(async file => {
-            _.set(treeData, data.files.name + "['" + file.name + "']", {
-              content: await file.content,
-            })
-          }))
-          console.log(treeData)
-          setState({treeData: treeData})
+          console.log("backend gave me this", data)
+
+          setState((oldState) => {
+            return {
+              ...oldState,
+              folderTree: data.files
+            }
+          })
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  })
+  }, [id])
 
   const onUploadClick = async (files) => {
-    console.log(files)
-    const treeData = {}
-    await Promise.all(Object.values(files).map(async file => {
-      const directoryRegex = /^(.+)\/([^/]*)$/; // first group gives all directories excluding final file, second group gives file name which is not really needed
-      const matches = directoryRegex.exec(file.webkitRelativePath)
+    console.log("getting called at the right time")
+    const treeData = await getTreeDataFromFiles(files)
 
-      // ignore hidden folders
-      if (!matches[1].includes(".")) {
-        const folderPath = matches[1].split("/").join(".")
-        _.set(treeData, folderPath + "['" + file.name + "']", {
-          content: await file.text(),
-        })
-      }
-    }))
-
-    console.log("treedata:", treeData)
-
-    const key = Object.keys(treeData)[0]
-    console.log("getFolderTree ",
-      getFolderTree(treeData[key], {
-        name: key
-      }))
     setState(oldState => ({
       ...oldState,
-      treeData
+      folderTree: getFolderTree(treeData)
     }))
   }
 
-  body = {
-    uid, id, folderTree: getFolderTree(state.treeData, {
-      name: ""
-    }).children[0], shareable
-  };
-  // console.log(body.folderTree)
- 
+  // body = {
+  //   uid, id, folderTree: getFolderTree(state.treeData, {
+  //     name: ""
+  //   }).children[0], shareable
+  // };
 
+
+  // console.log(body.folderTree)
+
+  console.log("folder treeeeeee", state.folderTree)
   return (
-    <> 
+    <>
       <input
         directory=""
         webkitdirectory=""
@@ -96,18 +78,14 @@ const File = (props) => {
       />
       <div className="fileupload">
         <label className="uploadBtn" htmlFor="actual-btn">Upload file/folder</label>
-        {body.folderTree && <FolderTree
-          onNameClick={({ nodeData, defaultOnClick }) => {
-            defaultOnClick()
-            nodeData.content ? props.changeContent(nodeData.content) : console.log()
-          }}
-          data={body.folderTree}
-          showCheckbox={false}
-          indentPixels={15}
-          readOnly
-        />}
+
+        <FileFolderTree
+          folderTree={state.folderTree}
+          changeContent={props.changeContent}
+        />
       </div>
       <EditModal body={body} />
+
     </>
   );
 };

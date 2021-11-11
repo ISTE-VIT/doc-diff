@@ -1,4 +1,6 @@
-const getFolderTree = (treeData, resultObject) => {
+const getFolderTree = (treeData, resultObject = {
+    name: ""
+}) => {
     resultObject.children = Object.keys(treeData).map(key => {
         if ("content" in treeData[key]) {
             // means its a file
