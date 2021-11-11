@@ -1,9 +1,8 @@
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
 import Card from "../../UI/Card";
 import classes from "../../UI/ErrorModal.module.css";
 import clipboardicon from "../../../images/clipboard.svg";
 import "../../Editor/NameModal.css";
-
 
 const ShareModal = (props) => {
   const [share, setShare] = useState(props.shareable);
@@ -12,7 +11,7 @@ const ShareModal = (props) => {
 
   function copyToClipboard(e) {
     textAreaRef.current.select();
-    document.execCommand('copy'); 
+    document.execCommand('copy');
     e.target.focus();
     setCopySuccess('Copied!');
   };
@@ -27,21 +26,27 @@ const ShareModal = (props) => {
         </header>
         <div className={classes.content}>
           <p>{props.message}</p>
-          <input value={`/projects/${props.id}`} ref={textAreaRef} readOnly></input> 
-          <button className="editing" onClick={copyToClipboard}><img className="editing" alt="doc-diff" src={clipboardicon} className="round" /></button> 
-          <div className="copied">{copySuccess}</div> 
+
+          <div className="d-flex justify-content-center">
+            <input value={`/projects/${props.id}`} ref={textAreaRef} readOnly className="shareInput" />
+            <button className="editing" onClick={copyToClipboard}>
+              <img alt="doc-diff" src={clipboardicon} />
+            </button>
+          </div>
+
+          <div className="copied">{copySuccess}</div>
           <div className="shareable row">
             <div className="col-lg-6 slider-fix">
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={share}
-                onChange={(e) => {
-                  setShare(!share);
-                }}
-              />
-              <span className="slider round"></span>
-            </label>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={share}
+                  onChange={(e) => {
+                    setShare(!share);
+                  }}
+                />
+                <span className="slider round"></span>
+              </label>
             </div>
             <div className="text col-lg-6 shareable-fix">Shareable</div>
           </div>

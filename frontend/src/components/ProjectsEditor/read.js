@@ -11,19 +11,14 @@ import getFolderTree from '../../utils/getFolderTree';
 const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
-  }) 
-  const [shareable, setShareable] = useState(false)
+  })
+  let shareable = false;
   const uid = cookie.load("key");
   let body;
-
-  // useEffect(() => {
-  //   setFolderData(null)
-  // }, [nameModal])
 
   const id = props.id;
 
   useEffect(() => {
-
     if (id) {
       axios.get(`/projects/${id}`, {
         headers: {
@@ -48,8 +43,7 @@ const File = (props) => {
           console.log(error);
         });
     }
-  }, [])
-
+  })
 
   const onUploadClick = async (files) => {
     console.log(files)
@@ -68,6 +62,7 @@ const File = (props) => {
     }))
 
     console.log("treedata:", treeData)
+
     const key = Object.keys(treeData)[0]
     console.log("getFolderTree ",
       getFolderTree(treeData[key], {
