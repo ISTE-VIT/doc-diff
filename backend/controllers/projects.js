@@ -7,7 +7,7 @@ const getAllProjects = async (req, res) => {
 
     const projects = await Project.find({ uid })
     if (!projects) return res.status(404).send('No projects found')
-
+    
     return res.status(200).send(projects)
 }
 

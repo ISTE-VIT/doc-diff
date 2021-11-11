@@ -15,12 +15,10 @@ app.use(cors())
 app.use('/projects', projectsRoute);
 app.use('/users', usersRoute);
 
-const PORT = process.env.PORT || 3000;
-
 mongoose.connect(process.env.DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true
 }).then(
-  app.listen(PORT, "localhost", () => console.log(`Server is running on port ${PORT}`)));
+  app.listen(process.env.PORT || 8080));
