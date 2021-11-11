@@ -20,7 +20,7 @@ const Navbar = (props) => {
   return (
     <nav className="navbar navbar-expand-lg fixed-top "> 
       <a href="/" className="logo-margin">
-        <img src={logo} className="logo-" alt="timemator"/>
+        <img src={logo} className="logo-" alt="doc-diff"/>
       </a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -35,7 +35,7 @@ const Navbar = (props) => {
         </div>
       </div>
       {props.button && ((loggedin) ? <button className="noBorder" onClick={logOut}>
-        <img src={logout_icon} className="logoutBtn" alt="timemator"/>
+        <img src={logout_icon} className="logoutBtn" alt="doc-diff"/>
       </button>: <><button className="nav-link btn button1 " onClick={() => history.push('/signup')}>
         Sign Up 
       </button>

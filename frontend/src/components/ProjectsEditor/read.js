@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import FolderTree from 'react-folder-tree';
 import _ from "lodash"
-import EditModal from "./EditModal";
-import NameModal from "../Editor/NameModal";
+import EditModal from "./EditModal"; 
 import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
 import "../Editor/File.css";
@@ -12,8 +11,7 @@ import getFolderTree from '../../utils/getFolderTree';
 const File = (props) => {
   const [state, setState] = useState({
     treeData: {}
-  })
-  const [nameModal, setNameModal] = useState(false)
+  }) 
   const [shareable, setShareable] = useState(false)
   const uid = cookie.load("key");
   let body;
@@ -87,10 +85,7 @@ const File = (props) => {
     }).children[0], shareable
   };
   // console.log(body.folderTree)
-
-  const errorHandler = () => {
-    setNameModal(null);
-  }
+ 
 
   return (
     <> 

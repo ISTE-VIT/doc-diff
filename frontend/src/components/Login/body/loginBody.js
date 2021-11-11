@@ -25,7 +25,7 @@ const LoginBody = () => {
         </div>
       </div>
       <div className="col-lg-7">
-        <img src={img4} className="loginImage" alt="timemator" />
+        <img src={img4} className="loginImage" alt="doc-diff" />
       </div>
     </div>
   );

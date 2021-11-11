@@ -17,7 +17,7 @@ const Section1 = () => {
         </Link>
       </div>
       <div className="col-lg-6">
-        <img src={img1} className="container img1" alt="timemator" />
+        <img src={img1} className="container img1" alt="doc-diff" />
       </div>
     </div>
   );

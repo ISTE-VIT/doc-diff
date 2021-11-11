@@ -28,7 +28,7 @@ const ShareModal = (props) => {
         <div className={classes.content}>
           <p>{props.message}</p>
           <input value={`/projects/${props.id}`} ref={textAreaRef} readOnly></input> 
-          <button className="editing" onClick={copyToClipboard}><img className="editing" src={clipboardicon} className="round" /></button> 
+          <button className="editing" onClick={copyToClipboard}><img className="editing" alt="doc-diff" src={clipboardicon} className="round" /></button> 
           <div className="copied">{copySuccess}</div> 
           <div className="shareable row">
             <div className="col-lg-6 slider-fix">

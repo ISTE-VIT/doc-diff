@@ -4,8 +4,7 @@ import wave from "../../../images/wave.svg";
 import linkedin from "../../../images/linkedin.svg";
 import mail from "../../../images/mail.svg";
 import youtube from "../../../images/youtube.svg";
-import facebook from "../../../images/facebook.svg";
-import twitter from "../../../images/twitter.svg";
+import facebook from "../../../images/facebook.svg"; 
 import instagram from "../../../images/instagram.svg";
 
 
@@ -19,7 +18,7 @@ const section3 = () => {
             <p className="txt">Indian Society for Technical Education or ISTE is a national, professional, non-profit making Society registered under the Societies Registration Act of 1860. The major objective of ISTE is to assist and contribute to the production and development of top-quality professional engineers and technicians required by industries and other organizations.</p>
           </div>
           <div className="col-lg-6">
-            <img src={img3} className="container img3" alt="timemator" />
+            <img src={img3} className="container img3" alt="doc-diff" />
           </div>
         </div>
       </div>

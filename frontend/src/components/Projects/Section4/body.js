@@ -97,7 +97,7 @@ const Body = () => {
                 <div className="col-lg-4">
                   <div className="card">
                     <div className="image-container">
-                    <img src={proj} className="card-img" alt="timemator" />
+                    <img src={proj} className="card-img" alt="doc-diff" />
                       <div className="after">
                         <button
                           className="projectBtn"
@@ -114,7 +114,7 @@ const Body = () => {
                           <img
                             src={delicon}
                             className="overlayIcons"
-                            alt="timemator"
+                            alt="doc-diff"
                           />
                         </button>
                         <button
@@ -126,7 +126,7 @@ const Body = () => {
                           <img
                             src={editicon}
                             className="overlayIcons"
-                            alt="timemator"
+                            alt="doc-diff"
                           />
                         </button>
                         <button
@@ -145,7 +145,7 @@ const Body = () => {
                           <img
                             src={linkicon}
                             className="overlayIcons"
-                            alt="timemator"
+                            alt="doc-diff"
                           />
                         </button>
                         <button
@@ -161,7 +161,7 @@ const Body = () => {
                           <img
                             src={renameicon}
                             className="overlayIcons"
-                            alt="timemator"
+                            alt="doc-diff"
                           />
                         </button>
                       </div>

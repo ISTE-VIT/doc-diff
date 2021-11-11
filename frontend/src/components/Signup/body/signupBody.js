@@ -25,7 +25,7 @@ const Signupbody = () => {
         </div>
       </div>
       <div className="col-lg-7">
-        <img src={img5} className="loginImage" alt="timemator" />
+        <img src={img5} className="loginImage" alt="doc-diff" />
       </div>
     </div>
   );
