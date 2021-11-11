@@ -1,0 +1,27 @@
+.grey{
+    background: #666D73;
+    min-height: 90vh;
+}
+ 
+.editor-page{
+    margin-top: 5.2vw;
+}
+
+.split {
+    display: flex;
+    flex-direction: row;
+    min-width: 100vw;
+}
+
+.gutter {
+    background-color: grey;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    z-index: 200;
+}
+
+.gutter.gutter-horizontal {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+    cursor: col-resize;
+} 
+ 

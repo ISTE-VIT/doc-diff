@@ -1,0 +1,24 @@
+.uploadBtn {
+    background-color: #00adb5;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif; 
+    cursor: pointer; 
+    width:100%;  
+    text-align: center;
+} 
+
+.save_btn {
+    text-align: center;
+    background-color: #00adb5; 
+    color: white;
+    padding: 0.5rem;
+    width:300px;
+    font-family: sans-serif; 
+    cursor: pointer;  
+    position: fixed;
+    bottom: 0px !important;  
+} 
+ 
+ 
+

@@ -2,14 +2,14 @@ const express = require('express');
 
 const router = express.Router();
 
-// Display all projects
-router.get('/', (req, res) => {
-    res.send('Hello world!');
-})
+const { getAllProjects, createProject, getProjectById, updateShareableProject, deleteProject, updateProjectName, updateFileTree } = require('../controllers/projects');
 
-// Create a new project
-// router.post('/create', (req, res) => {
-    
-// })
+router.get('/all', getAllProjects);
+router.post('/create', createProject);
+router.get('/:id', getProjectById);
+router.patch('/share', updateShareableProject);
+router.delete('/delete', deleteProject);
+router.patch('/updatename', updateProjectName);
+router.patch('/updatefiles', updateFileTree);
 
 module.exports = router;

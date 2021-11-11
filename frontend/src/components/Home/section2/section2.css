@@ -49,5 +49,10 @@ margin-top: 12%;
     color: #00adb5 !important;  
   }
 
+  .round{
+      border-radius:10px !important;
+      box-shadow:4px 4px 5px #d3d3d3;
+  }
+
    
 

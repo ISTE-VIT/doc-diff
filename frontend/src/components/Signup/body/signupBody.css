@@ -7,8 +7,13 @@
   .signupbody >div >h2{
     font-size: 40px !important;
     margin-bottom: 10%;
-    margin-top: -5% !important;
+    margin-top: -10% !important;
   }
+
+  .margintop{
+    margin-top: 15%;
+  } 
+ 
 
   .google{
     border-radius: 10px !important;
@@ -20,11 +25,22 @@
     width: 75%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 10px 10% 10px 10% !important; 
+  }
+
+  .centerBtn {
+    display: flex;
+    justify-content: center !important;
+  }
+ 
+  .texts{
+    padding-left: 10px;
   }
 
   .signupbody{
   background-color: white;
-  padding: 12% 5% 5% 10% !important;  
+  padding: 12% 5% 0% 10% !important;  
   font-family: Montserrat !important;
-  margin-right: 0px !important;
+  margin-right: -5% !important; 
   }

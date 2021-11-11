@@ -31,9 +31,13 @@
     align-items: flex-end;
     padding-right: 30px;  
     padding-bottom: 30px;
+}  
+
+.social-icon{
+    padding:0px 3px 0px 3px;
+    z-index:100;
 }
 
-.icon{
-    padding:0px 25px 0px 25px;
-    z-index:100;
+.social-img{
+    width:50% !important;
 }
