@@ -6,7 +6,7 @@ import Split from 'react-split'
 
 const Body = (props) => {
  
-  var [code, setCode] = useState("Paste Code Here");
+  let code = "Paste Code Here";
   const [content, setContent] = useState("Choose a file");
   const diffEditorRef = useRef(null);
 
