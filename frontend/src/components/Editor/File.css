@@ -12,13 +12,19 @@
     text-align: center;
     background-color: #00adb5; 
     color: white;
-    padding: 0.5rem;
-    width:300px;
+    padding: 0.5rem; 
+    width : 100%;
     font-family: sans-serif; 
     cursor: pointer;  
-    position: fixed;
+    position: relative;
     bottom: 0px !important;  
+    border: none; 
 } 
+
+.save_div{
+    width:inherit; 
+    display: flex; 
+}
  
  
 

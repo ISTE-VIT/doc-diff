@@ -30,7 +30,7 @@ const SaveModal = (props = { body: {} }) => {
     }
 
     return (
-        <div>
+        <div className="save_div" >
             {error && (
                 <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} save="true" body={props.body} />
             )}

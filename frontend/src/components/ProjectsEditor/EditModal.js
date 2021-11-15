@@ -10,10 +10,8 @@ const EditModal = (props = { body: {} }) => {
     const history = useHistory()
     const handleClick = async () => {
         const key = cookie.load("key");
-        if (key) {
-            console.log("request body:", props.body)
+        if (key) { 
             await axios.patch("/projects/updatefiles", props.body).then((res) => {
-                console.log(res);
             });
             history.push("/projects")
         }
@@ -27,10 +25,10 @@ const EditModal = (props = { body: {} }) => {
 
     const errorHandler = () => {
         setError(null);
-    }
+    } 
 
     return (
-        <div>
+        <div className="save_div">
             {error && (
                 <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} save="true" body={props.body} />
             )}

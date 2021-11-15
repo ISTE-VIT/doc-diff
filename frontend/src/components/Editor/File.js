@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import FolderTree, { testData } from 'react-folder-tree';
+import { testData } from 'react-folder-tree';
 import SaveModal from "./SaveModal";
 import NameModal from "./NameModal";
 import cookie from "react-cookies";
@@ -81,8 +81,8 @@ const File = (props) => {
           // readOnly
           // />
         }
-      </div>
       <SaveModal body={body} />
+      </div>
     </>
   );
 };
