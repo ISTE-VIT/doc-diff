@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "../../../utils/axiosForBackend"
 import cookie from "react-cookies"; 
 import proj from "../../../images/project.svg";
+import noprojects from "../../../images/noprojects.svg";
 import delicon from "../../../images/delete.png";
 import editicon from "../../../images/edit.png";
 import linkicon from "../../../images/link.png";
@@ -48,7 +49,7 @@ const Body = () => {
     setError(null);
     setRename(null);
     setShare(null);
-  };
+  }; 
 
   return (
     <>
@@ -181,6 +182,12 @@ const Body = () => {
               );
             })}
         </div>
+            {(projects.length===0) &&  
+              <div className="noProject">
+                <img src={noprojects} alt="No Projects"></img>
+                <h1> No Projects exist!</h1>
+              </div>
+            }
       </div>
     </>
   );

@@ -60,3 +60,16 @@
   justify-content: center;
   align-items: center;
 }
+
+.noProject{ 
+  text-align: center !important; 
+}
+
+.noProject h1{  
+  margin-top: 4.5%;
+}
+
+.noProject img{ 
+  width:29%;
+  height: auto;
+}

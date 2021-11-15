@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-
-import _ from "lodash"
+import { useState, useEffect } from 'react'; 
 import EditModal from "./EditModal";
 import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
@@ -13,8 +11,7 @@ import FileFolderTree from '../common/FileFolderTree';
 const File = (props) => {
   const [state, setState] = useState({
     folderTree: {}
-  })
-  let shareable = false;
+  }) 
   const uid = cookie.load("key");
   let body;
 
@@ -28,8 +25,7 @@ const File = (props) => {
         },
       })
         .then((response) => {
-          const data = response.data;
-          console.log("backend gave me this", data)
+          const data = response.data; 
 
           setState((oldState) => {
             return {
@@ -44,26 +40,19 @@ const File = (props) => {
     }
   }, [id])
 
-  const onUploadClick = async (files) => {
-    console.log("getting called at the right time")
+  const onUploadClick = async (files) => { 
     const treeData = await getTreeDataFromFiles(files)
 
     setState(oldState => ({
       ...oldState,
       folderTree: getFolderTree(treeData)
     }))
-  }
+  } 
 
-  // body = {
-  //   uid, id, folderTree: getFolderTree(state.treeData, {
-  //     name: ""
-  //   }).children[0], shareable
-  // };
+  body = {
+    uid, id, folderTree: state.folderTree
+  }; 
 
-
-  // console.log(body.folderTree)
-
-  console.log("folder treeeeeee", state.folderTree)
   return (
     <>
       <input
@@ -83,8 +72,8 @@ const File = (props) => {
           folderTree={state.folderTree}
           changeContent={props.changeContent}
         />
-      </div>
       <EditModal body={body} />
+      </div>
 
     </>
   );
