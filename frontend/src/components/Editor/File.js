@@ -66,7 +66,10 @@ const File = (props) => {
           onUploadClick(e.target.files)
         }}
       />
-      <div >
+      <div style={{
+        height: "100%",
+        position: "relative",
+      }} >
         <label className="uploadBtn" htmlFor="actual-btn">Upload file/folder</label>
         {folderTree &&
           <FileFolderTree folderTree={folderTree} changeContent={props.changeContent} />
@@ -81,7 +84,7 @@ const File = (props) => {
           // readOnly
           // />
         }
-      <SaveModal body={body} />
+        <SaveModal body={body} />
       </div>
     </>
   );

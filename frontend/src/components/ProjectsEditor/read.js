@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react';
 import EditModal from "./EditModal";
 import cookie from "react-cookies";
 import 'react-folder-tree/dist/style.css';
@@ -11,7 +11,7 @@ import FileFolderTree from '../common/FileFolderTree';
 const File = (props) => {
   const [state, setState] = useState({
     folderTree: {}
-  }) 
+  })
   const uid = cookie.load("key");
   let body;
 
@@ -25,7 +25,7 @@ const File = (props) => {
         },
       })
         .then((response) => {
-          const data = response.data; 
+          const data = response.data;
 
           setState((oldState) => {
             return {
@@ -40,18 +40,18 @@ const File = (props) => {
     }
   }, [id])
 
-  const onUploadClick = async (files) => { 
+  const onUploadClick = async (files) => {
     const treeData = await getTreeDataFromFiles(files)
 
     setState(oldState => ({
       ...oldState,
       folderTree: getFolderTree(treeData)
     }))
-  } 
+  }
 
   body = {
     uid, id, folderTree: state.folderTree
-  }; 
+  };
 
   return (
     <>
@@ -65,14 +65,16 @@ const File = (props) => {
           onUploadClick(e.target.files)
         }}
       />
-      <div className="fileupload">
+      <div className="fileupload" style={{
+        position: "relative"
+      }}>
         <label className="uploadBtn" htmlFor="actual-btn">Upload file/folder</label>
 
         <FileFolderTree
           folderTree={state.folderTree}
           changeContent={props.changeContent}
         />
-      <EditModal body={body} />
+        <EditModal body={body} />
       </div>
 
     </>
