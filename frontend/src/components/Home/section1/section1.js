@@ -1,6 +1,6 @@
 import "./section1.css";
-import img1 from "../../../images/img1.svg"; 
-import {Link} from "react-router-dom"
+import img1 from "../../../images/img1.svg";
+import { Link } from "react-router-dom"
 
 const Section1 = () => {
   return (
@@ -16,8 +16,10 @@ const Section1 = () => {
         </button>
         </Link>
       </div>
-      <div className="col-lg-6">
-        <img src={img1} className="container img1" alt="doc-diff" />
+      <div className="col-lg-6 mt-5">
+        <img src={img1} className="img1" style={{
+          width: "100%",
+        }} alt="doc-diff" />
       </div>
     </div>
   );
