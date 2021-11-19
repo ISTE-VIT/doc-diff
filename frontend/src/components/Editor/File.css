@@ -16,8 +16,8 @@
     width : 100%;
     font-family: sans-serif; 
     cursor: pointer;  
-    position: relative;
-    bottom: 0px !important;  
+    position: relative; 
+    margin-top: 5%; 
     border: none; 
 } 
 

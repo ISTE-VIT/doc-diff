@@ -47,3 +47,9 @@
     box-shadow: 3px 3px 3px grey;
 }
 
+@media (max-width: 990px) {
+    .img1 {
+      display: none !important;
+    }  
+  }
+  
