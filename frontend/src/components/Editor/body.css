@@ -1,10 +1,10 @@
 .grey{
     background: #666D73;
-    min-height: 90vh;
+    min-height: 68em;
 }
  
 .editor-page{
-    margin-top: 4.1em;
+    margin-top: 4.6em;
 }
 
 .split {
@@ -24,4 +24,21 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
     cursor: col-resize;
 } 
+
+@media (max-width: 1300px) {
+    .editor-page{
+        margin-top: 4.5em;
+    }
+  }
+@media (min-width: 1700px) {
+    .editor-page{
+        margin-top: 5.1em;
+    }
+  }
+
+  @media (min-width: 2000px) {
+    .editor-page{
+        margin-top: 5.3em;
+    }
+  }
  
