@@ -44,3 +44,13 @@
   font-family: Montserrat !important;
   margin-right: -5% !important; 
   }
+
+  @media (max-width: 990px) {
+    .loginImage {
+      display: none !important;
+    } 
+    .signupbody { 
+        margin-top: 5.5rem;
+    }  
+  }
+  
