@@ -47,7 +47,7 @@ const Navbar = (props) => {
               : 
               <>
               <li className="nav-item navbar-right">
-                <button className="nav-link btn button1 collapse-hide" onClick={() => history.push('/signup')}>
+                <button className="nav-link btn button1 collapse-hide effect" onClick={() => history.push('/signup')}>
                   Sign Up 
                 </button>
                 <button className="blue collapse-show noBorder" onClick={() => history.push('/signup')}>
@@ -55,7 +55,7 @@ const Navbar = (props) => {
                 </button>
               </li>
               <li className="nav-item">
-                <button className="nav-link btn button2 ml collapse-hide" onClick={() => history.push('/login')}> 
+                <button className="nav-link btn button2 ml collapse-hide effect" onClick={() => history.push('/login')}> 
                   Login 
                 </button> 
                 <button className="blue collapse-show noBorder" onClick={() => history.push('/login')}> 

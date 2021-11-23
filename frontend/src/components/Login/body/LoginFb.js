@@ -51,7 +51,7 @@ var FormFb = () => {
           />
         </Form.Group>
         <Button className="signupBtn" disabled={loading} block size="lg" type="submit" >
-          Register
+          Sign in
         </Button>
       </Form>
     </div>

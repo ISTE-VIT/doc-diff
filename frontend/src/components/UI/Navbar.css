@@ -89,10 +89,6 @@
   display: flex;
   justify-content: center;
 }
-
-.navbar-right{
-  margin-left: 8rem;
-}
   
 @media (max-width: 1300px) {
   .dot {
@@ -119,4 +115,7 @@
   .collapse-show {
     display: none !important;
   } 
+  .navbar-right{
+    margin-left: 8rem;
+  }
 }
