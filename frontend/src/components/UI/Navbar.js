@@ -40,8 +40,11 @@ const Navbar = (props) => {
             </li>
             {props.button && ((loggedin) ? 
               <li className="nav-end navbar-right">
-                <button className="noBorder" onClick={logOut}>
+                <button className="noBorder collapse-hide" onClick={logOut}>
                   <img src={logout_icon} className="logoutBtn" alt="doc-diff"/>
+                </button>
+                <button className="blue collapse-show noBorder" onClick={logOut}>
+                  Sign Out
                 </button>
               </li>
               : 
