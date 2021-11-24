@@ -8,18 +8,24 @@ const Body = (props) => {
  
   let code = "Paste Code Here";
   const [content, setContent] = useState("Choose a file");
+  const [notShareable, setNotShareable] = useState(false);
   const diffEditorRef = useRef(null);
 
   function handleEditorMount(editor) {
     diffEditorRef.current = editor;
   }
 
+  const handleNotShareable = () => {
+    setNotShareable(true);
+  }
+
   return (
     <div className="editor-page">
+      {!notShareable && (
       <div className="row"> 
       <Split className="split" minSize={200} gutterSize={10} sizes={[190,800]}>
         <div className="grey" >
-          <Read changeContent={content => setContent(content)} id={props.id} />
+          <Read changeContent={content => setContent(content)} id={props.id} onNotShareable={handleNotShareable}/>
         </div>
         <div className="">
           <DiffEditor
@@ -29,10 +35,12 @@ const Body = (props) => {
             onMount={handleEditorMount}
             theme="vs-dark" 
             />
-            </div> 
+          </div> 
       </Split>
-      </div>
-      
+      </div>)}
+      {notShareable && (
+        <h2 className="notShareable">Oops! This is not a shareable Project.</h2>
+      )}
     </div>
   );
 };

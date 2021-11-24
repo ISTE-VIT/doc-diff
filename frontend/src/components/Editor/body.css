@@ -20,6 +20,12 @@
     z-index: 20;
 }
 
+.notShareable{
+    text-align: center;
+    color: #00adb5;
+    margin-top: 20%;
+}
+
 .gutter.gutter-horizontal {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
     cursor: col-resize;

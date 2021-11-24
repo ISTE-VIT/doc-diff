@@ -36,10 +36,11 @@ const NameModal = (props) => {
               <div className="text">Shareable</div>
           </div>
 
+
           <button
             type="submit"
             disabled={!name}
-            className={classes.modalBtn}
+            className="modal-Btn"
             onClick={() => {
               props.changeName(name);
               props.changeShare(share);
@@ -47,6 +48,8 @@ const NameModal = (props) => {
           >
             Okay
           </button>
+          <h5 className="note"><b>Note:</b> To save a Project you must be signed in</h5>
+
         </div>
       </Card>
     </div>

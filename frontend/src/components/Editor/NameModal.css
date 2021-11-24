@@ -92,3 +92,21 @@
     display: flex;
     justify-content: flex-start;
   }
+
+  .modal-Btn{ 
+    border-radius: 10px !important;
+    border: 4px solid #00adb5 !important;
+    padding: 10px 30px 10px 30px !important; 
+    font-size: 1.25rem !important;
+    background-color: #00adb5 !important ;
+    font-weight: bolder !important;
+    color: white !important;
+    width:75%;
+    margin-top: 5%;
+  } 
+
+  .note{ 
+    font-style: italic;
+    color: #808080;
+    margin-top: 5%;
+  }

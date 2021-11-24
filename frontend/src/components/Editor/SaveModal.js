@@ -8,8 +8,8 @@ import { useHistory } from "react-router";
 const SaveModal = (props = { body: {} }) => {
     const [error, setError] = useState(null);
     const history = useHistory()
+    const key = cookie.load("key");
     const handleClick = async () => {
-        const key = cookie.load("key");
         if (key) {
             console.log("request body:", props.body)
             await axios.post("/projects/create", props.body).then((res) => {
@@ -34,7 +34,7 @@ const SaveModal = (props = { body: {} }) => {
             {error && (
                 <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} save="true" body={props.body} />
             )}
-            <button className="save_btn" onClick={handleClick}>Save to Projects</button>
+            {key && (<button className="save_btn" onClick={handleClick}>Save to Projects</button>)}
         </div>
     )
 }

@@ -27,12 +27,12 @@ const ShareModal = (props) => {
         <div className={classes.content}>
           <p>{props.message}</p>
 
-          <div className="d-flex justify-content-center">
+          {share && (<div className="d-flex justify-content-center">
             <input value={`https://docdiff.netlify.app/projects/${props.id}`} ref={textAreaRef} readOnly className="shareInput" />
             <button className="editing" onClick={copyToClipboard}>
               <img alt="doc-diff" src={clipboardicon} />
             </button>
-          </div>
+          </div>)}
 
           <div className="copied">{copySuccess}</div>
           <div className="shareable row">
