@@ -25,8 +25,7 @@ const File = (props) => {
         },
       })
         .then((response) => {
-          const data = response.data;
-
+          const data = response.data; 
           setState((oldState) => {
             return {
               ...oldState,
@@ -35,10 +34,11 @@ const File = (props) => {
           })
         })
         .catch((error) => {
+          props.onNotShareable();
           console.log(error);
         });
     }
-  }, [id])
+  }, [id,props])
 
   const onUploadClick = async (files) => {
     const treeData = await getTreeDataFromFiles(files)
